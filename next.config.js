@@ -1,4 +1,3 @@
-const { join } = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -6,7 +5,7 @@ const nextConfig = {
 
 module.exports = {
   sassOptions: {
-    includePaths: [join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, 'styles')],
   },
 
   webpack: (config, { isServer }) => {
