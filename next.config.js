@@ -4,10 +4,6 @@ const nextConfig = {
 };
 
 module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
-
   webpack: (config, { isServer }) => {
     // sass, scss 파일을 처리하기 위한 rule 추가
     config.module.rules.push({
