@@ -1,11 +1,4 @@
----
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
 
----
 
 ### 이슈 설명
 이슈에 대한 간단한 요약을 제공해주세요.
