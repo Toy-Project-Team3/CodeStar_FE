@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  
-}
+};
 
 module.exports = {
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
+
   webpack: (config, { isServer }) => {
     // sass, scss 파일을 처리하기 위한 rule 추가
     config.module.rules.push({
@@ -15,36 +18,36 @@ module.exports = {
         {
           loader: 'sass-loader',
           options: {
-            implementation: require('sass')
-          }
-        }
-      ]
-    })
+            implementation: require('sass'),
+          },
+        },
+      ],
+    });
 
     if (isServer) {
-      const antStyles = /antd\/.*?\/style.*?/
-      const origExternals = [...config.externals]
+      const antStyles = /antd\/.*?\/style.*?/;
+      const origExternals = [...config.externals];
       config.externals = [
         (context, request, callback) => {
-          if (request.match(antStyles)) return callback()
+          if (request.match(antStyles)) return callback();
           if (typeof origExternals[0] === 'function') {
-            origExternals[0](context, request, callback)
+            origExternals[0](context, request, callback);
           } else {
-            callback()
+            callback();
           }
         },
         ...(typeof origExternals[0] === 'function' ? [] : origExternals),
-      ]
+      ];
 
       config.module.rules.unshift({
         test: antStyles,
         use: 'null-loader',
-      })
+      });
     }
 
-    return config
-  }
-}
+    return config;
+  },
+};
 
 module.exports = {
   webpack: (config, { isServer }) => {
@@ -58,6 +61,4 @@ module.exports = {
   },
 };
 
-
-
-module.exports = nextConfig
+module.exports = nextConfig;

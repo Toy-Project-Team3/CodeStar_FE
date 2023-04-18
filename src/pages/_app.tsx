@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import '@/styles/main.scss';
+import '@/styles/global.scss';
 import '@/styles/reset.scss';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
