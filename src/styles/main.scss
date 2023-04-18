@@ -1,5 +1,8 @@
-$primary-color: #0070f3;
+@import 'variables';
 
-body {
-color: $primary-color;
+.test {
+  width: 400px;
+  height: 400px;
+
+  @include skeleton;
 }
