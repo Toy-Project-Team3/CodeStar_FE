@@ -1,0 +1,4 @@
+issue_template:
+  - .github/ISSUE_TEMPLATE/issue_template.md
+pull_request_template: 
+  - .github/PULL_REQUEST_TEMPLATE/pull_request_template.md
