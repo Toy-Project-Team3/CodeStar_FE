@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import style from '@/styles/main.module.scss';
 
 export default function Home() {
   return (
@@ -10,7 +9,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={style.test}>
+      <main>
         <h1>hello!</h1>
       </main>
     </>
