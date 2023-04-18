@@ -1,0 +1,15 @@
+.skeleton{
+  background: #e4e6e8
+  linear-gradient(100deg, rgba(255, 255, 255, 0) 40%,  #f5f5fa 50%, rgba(255, 255, 255, 0) 60%);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  animation: 1s loading ease-in-out infinite;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
