@@ -11,4 +11,9 @@ export const theme: DefaultTheme = {
   primary: '#19c37d',
   warning: '#f7b500',
   danger: '#ef4146',
+  fontWeight: {
+    normal: 400,
+    semiBold: 600,
+    bold: 700,
+  },
 };
