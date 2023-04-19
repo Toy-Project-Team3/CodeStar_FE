@@ -4,7 +4,6 @@ import { users } from '@/types/User';
 import { createUser } from '@/utils/createUser';
 import { generateToken } from '@/utils/generateToken';
 import { RegisterRequestBody } from '@/types/Register';
-;
 
 const server = setupServer();
 
@@ -21,7 +20,7 @@ server.use(
     const token = generateToken(user);
 
     return res(ctx.status(201), ctx.json({ user, token }));
-  })
+  }),
 );
 
 server.listen();
