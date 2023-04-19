@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 export const MainWrapper = styled.div`
   background-color: ${(p) => p.theme.background.main};
   color: ${(p) => p.theme.text};
-  min-height: 200vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 `;
 
 export const Header = styled.div`
+  z-index: 100;
+  background: ${(p) => p.theme.background.dark};
   width: 100%;
   height: 8rem;
   display: flex;
@@ -59,13 +61,41 @@ export const MainContent = styled.div`
   flex-wrap: wrap;
   margin-top: 10rem;
   gap: 4rem;
-  padding: 0 5rem;
+  padding: 0 10rem;
 `;
 
 export const MainContentItem = styled(motion.div)`
-  width: 18%;
+  box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
+  width: 20%;
   height: 30rem;
   border: 1px solid ${(p) => p.theme.text};
   border-radius: 1rem;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 2rem;
+  .thumbnail {
+    width: 100%;
+    height: 10rem;
+    background-color: ${(p) => p.theme.text};
+    border-radius: 1rem;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .title {
+      font-size: 2.5rem;
+      font-weight: ${(p) => p.theme.fontWeight.bold};
+    }
+    .description {
+      font-size: 1.6rem;
+    }
+  }
+`;
+
+export const MainContentDummy = styled.div`
+  width: 20%;
+  height: 30rem;
 `;
