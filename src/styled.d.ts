@@ -12,6 +12,7 @@ declare module 'styled-components' {
     primary: string;
     warning: string;
     danger: string;
+    point: string;
     fontWeight: {
       normal: number;
       semiBold: number;

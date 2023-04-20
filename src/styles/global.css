@@ -20,4 +20,8 @@
   font-family: "Pretendard-Regular";
 }
 
+*::selection{
+  background: #171721
+}
+
 
