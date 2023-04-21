@@ -1,7 +1,9 @@
 import React from 'react';
 import * as S from '@/styles/profileStyled';
-import { MainWrapper } from '@/styles/styled';
 import { motion, Variants } from 'framer-motion';
+import CreditScore from '@/components/CreditScore';
+import { ProfileActivity } from '@/styles/profileStyled';
+import Layout from '@/components/Layout';
 
 const variants: Variants = {
   hover: {
@@ -18,9 +20,19 @@ const variants: Variants = {
   },
 };
 
+interface ProfileConstants {
+  [key: string]: string;
+}
+
+const profileConstants: ProfileConstants = {
+  COMMENT: '댓글',
+  LIKE: '좋아요',
+  POST: '게시글',
+};
+
 function Index() {
   return (
-    <MainWrapper>
+    <Layout hasHeader>
       <S.ProfileWrapper>
         <S.ProfileHeader>
           <div className="col1">
@@ -33,15 +45,32 @@ function Index() {
             </motion.button>
           </div>
           <div className="col2">
-            <h1>이름</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, tempora!</p>
-            <button>수정하기</button>
+            <div className="col2-item">
+              <h1>이름</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, tempora!</p>
+              <button>수정하기</button>
+            </div>
+            <ProfileActivity>
+              <div className="activity__header">
+                <h1>활동</h1>
+                <button>더보기</button>
+              </div>
+              <div className="activity__body">
+                {Object.keys(profileConstants).map((key, index) => (
+                  <div key={index}>
+                    <span>{profileConstants[key]}</span>
+                    <div></div>
+                  </div>
+                ))}
+              </div>
+            </ProfileActivity>
           </div>
-          <div className="col3"></div>
+          <div className="col3">
+            <CreditScore />
+          </div>
         </S.ProfileHeader>
-        <S.ProfileBody></S.ProfileBody>
       </S.ProfileWrapper>
-    </MainWrapper>
+    </Layout>
   );
 }
 
