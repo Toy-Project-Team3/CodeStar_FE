@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from '@/styles/profileStyled';
-import { MainWrapper } from '@/styles/styled';
 import { motion, Variants } from 'framer-motion';
 import CreditScore from '@/components/CreditScore';
 import { ProfileActivity } from '@/styles/profileStyled';
