@@ -54,11 +54,18 @@ export const ProfileHeader = styled.div`
   }
 
   .col2 {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    height: inherit;
+    justify-content: space-between;
     padding: 0 2rem;
+    .col2-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+      gap: 2rem;
+    }
     h1 {
       font-size: 4rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};
@@ -107,6 +114,59 @@ export const ProfileCreditScore = styled.div<{ score: number }>`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+`;
+
+export const ProfileActivity = styled.div`
+  width: 100%;
+  min-height: 10rem;
+
+  .activity__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: ${(p) => p.theme.fontWeight.bold};
+      position: relative;
+      &:after {
+        content: '지금까지 활동한 내역입니다.';
+        opacity: 0;
+        width: 20rem;
+        position: absolute;
+        font-size: 1.5rem;
+        font-weight: ${(p) => p.theme.fontWeight.normal};
+        top: -3rem;
+        left: 0;
+        color: ${(p) => p.theme.text};
+        background-color: #454545;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover {
+        &::after {
+          display: block;
+          opacity: 1;
+        }
+      }
+    }
+
+    button {
+      font-size: 1.5rem;
+      color: ${(p) => p.theme.text};
+    }
+  }
+
+  .activity__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    font-size: 2rem;
   }
 `;
 
