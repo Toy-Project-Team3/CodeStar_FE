@@ -13,7 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
+      <Layout hasHeader>
         <S.MainContent>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
             if (item > 10) {
