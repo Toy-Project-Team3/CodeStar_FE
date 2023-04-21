@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from '@/styles/profileStyled';
 import { MainWrapper } from '@/styles/styled';
 import { motion, Variants } from 'framer-motion';
+import CreditScore from '@/components/CreditScore';
 
 const variants: Variants = {
   hover: {
@@ -16,15 +17,6 @@ const variants: Variants = {
       duration: 0.2,
     },
   },
-  waterInitial: {
-    y: 300,
-  },
-  waterAnimate: (custom: number) => ({
-    y: custom + '%',
-    transition: {
-      duration: 2,
-    },
-  }),
 };
 
 function Index() {
@@ -47,18 +39,7 @@ function Index() {
             <button>수정하기</button>
           </div>
           <div className="col3">
-            <S.ProfileCreditScore score={50}>
-              <motion.div
-                custom={50}
-                variants={variants}
-                initial="waterInitial"
-                animate="waterAnimate"
-                className="wave"
-              ></motion.div>
-              <div className="score">
-                <span>50</span>
-              </div>
-            </S.ProfileCreditScore>
+            <CreditScore />
           </div>
         </S.ProfileHeader>
       </S.ProfileWrapper>
