@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import * as S from '@/styles/styled';
-import Logo from '@/components/Logo';
 import { MainContentDummy } from '@/styles/styled';
-import Link from 'next/link';
 import Layout from '@/components/Layout';
 import React from 'react';
 
