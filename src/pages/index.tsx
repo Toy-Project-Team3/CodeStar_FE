@@ -3,6 +3,8 @@ import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import { MainContentDummy } from '@/styles/styled';
 import Link from 'next/link';
+import Layout from '@/components/Layout';
+import React from 'react';
 
 export default function Home() {
   return (
@@ -13,20 +15,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <S.MainWrapper>
-        <S.Header>
-          <div className="logo">
-            <Logo />
-          </div>
-          <div>
-            <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              글쓰기
-            </S.HeaderWriteButton>
-            <Link href="/profile">
-              <S.HeaderProfile></S.HeaderProfile>
-            </Link>
-          </div>
-        </S.Header>
+      <Layout>
         <S.MainContent>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
             if (item > 10) {
@@ -53,7 +42,7 @@ export default function Home() {
             );
           })}
         </S.MainContent>
-      </S.MainWrapper>
+      </Layout>
     </>
   );
 }
