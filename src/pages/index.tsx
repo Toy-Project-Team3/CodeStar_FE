@@ -2,6 +2,7 @@ import Head from 'next/head';
 import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import { MainContentDummy } from '@/styles/styled';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -21,7 +22,9 @@ export default function Home() {
             <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               글쓰기
             </S.HeaderWriteButton>
-            <S.HeaderProfile></S.HeaderProfile>
+            <Link href="/profile">
+              <S.HeaderProfile></S.HeaderProfile>
+            </Link>
           </div>
         </S.Header>
         <S.MainContent>

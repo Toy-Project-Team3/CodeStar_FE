@@ -77,8 +77,36 @@ export const ProfileHeader = styled.div`
       font-size: 3rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};
       cursor: pointer;
-      text-decoration: underline ${(p) => p.theme.background.dark};
     }
+  }
+`;
+
+export const ProfileCreditScore = styled.div<{ score: number }>`
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 0.2rem solid #848484;
+  font-size: 2rem;
+  font-weight: ${(p) => p.theme.fontWeight.bold};
+  color: ${(p) => p.theme.text};
+  position: relative;
+  overflow: hidden;
+  .wave {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: ${(p) => p.theme.primary};
+  }
+  .score {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
