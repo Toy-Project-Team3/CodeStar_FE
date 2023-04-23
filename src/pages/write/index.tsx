@@ -10,12 +10,15 @@ const WriteModal = dynamic(() => import('@/components/Write/WriteModal'), { ssr:
 
 const WritePage = () => {
   //실시간으로 vw 변화 감지하기 => 710px 미만이면 Editor 값 변경
-  // const [viewWidth, setViewWidth] = useState(window.innerWidth);
-  // useEffect(() => {
-  //   console.log(viewWidth);
-  //   setViewWidth(window.innerWidth);
-  // }, [viewWidth]);
-
+  const [vw, setVw] = useState(0);
+  useEffect(() => {
+    window.addEventListener('resize', getWindowWidth);
+    // return window.removeEventListener('resize', getWindowWidth);
+  }, [vw]);
+  const getWindowWidth = () => {
+    setVw(window.innerWidth);
+    console.log(window.innerWidth);
+  };
   const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
@@ -27,7 +30,7 @@ const WritePage = () => {
   const getEditorContents = (params: string) => {
     setContents(params);
   };
-  const submitClicked = () => {
+  const clickSubmit = () => {
     //writeModal 올라오기
     setIsSubmitClicked(true);
     modalRef.focus();
@@ -43,12 +46,12 @@ const WritePage = () => {
         <S.TitleContainer>
           <input type="text" onChange={getTitle} placeholder="제목을 적어주세요" />
         </S.TitleContainer>
-        <Editor getEditorContents={getEditorContents} />
+        <Editor getEditorContents={getEditorContents} viewWidth={vw} />
         <S.WriteFooter>
           <Button width={10} height={4} border={false} theme={'dark'} onClick={movePreviousPage}>
             나가기
           </Button>
-          <Button onClick={submitClicked}>출간하기</Button>
+          <Button onClick={clickSubmit}>출간하기</Button>
         </S.WriteFooter>
       </S.Wrapper>
       {/* <S.Wrapper>
