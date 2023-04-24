@@ -3,7 +3,7 @@ import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import Link from 'next/link';
 
-function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader: boolean }) {
+function BaseLayout({ children, hasHeader }: { children: React.ReactNode; hasHeader: boolean }) {
   return (
     <S.MainWrapper>
       {hasHeader && (
@@ -28,4 +28,4 @@ function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader:
   );
 }
 
-export default Layout;
+export default BaseLayout;

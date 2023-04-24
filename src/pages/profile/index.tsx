@@ -3,7 +3,7 @@ import * as S from '@/styles/profileStyled';
 import { ProfileActivity } from '@/styles/profileStyled';
 import { motion, Variants } from 'framer-motion';
 import CreditScore from '@/components/CreditScore';
-import Layout from '@/components/Layout';
+import BaseLayout from '@/components/Layout/BaseLayout';
 
 const variants: Variants = {
   hover: {
@@ -32,7 +32,7 @@ const profileConstants: ProfileConstants = {
 
 function Index() {
   return (
-    <Layout hasHeader>
+    <BaseLayout hasHeader>
       <S.ProfileWrapper>
         <S.ProfileHeader>
           <div className="col1">
@@ -59,7 +59,7 @@ function Index() {
                 {Object.keys(profileConstants).map((key, index) => (
                   <div key={index}>
                     <span>{profileConstants[key]}</span>
-                    <div></div>
+                    <div>0</div>
                   </div>
                 ))}
               </div>
@@ -70,7 +70,7 @@ function Index() {
           </div>
         </S.ProfileHeader>
       </S.ProfileWrapper>
-    </Layout>
+    </BaseLayout>
   );
 }
 
