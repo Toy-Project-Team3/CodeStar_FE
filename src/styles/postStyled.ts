@@ -177,3 +177,53 @@ export const UnderLine = styled.div`
   margin-top: 2rem;
   margin-bottom: 1.5rem;
 `;
+
+export const CommentContainer = styled.div`
+  margin: 4rem auto;
+  color: #d9d9d9;
+
+  width: 768px;
+  h4 {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+`;
+
+export const CommentWrapper = styled.div``;
+
+export const CommentTextArea = styled.textarea`
+  resize: none;
+  padding: 1rem 1rem 1.5rem;
+  outline: none;
+  border: 1px solid #f1f3f5;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  min-height: 7rem;
+  font-size: 1.5rem;
+  color: #d9d9d9;
+  line-height: 1.75;
+  background-color: #fff;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: #12b886;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0 1.8rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+`;
