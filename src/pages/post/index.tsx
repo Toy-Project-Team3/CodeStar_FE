@@ -69,6 +69,17 @@ function Index() {
         </S.WriterWrapper>
         <S.UnderLine></S.UnderLine>
       </S.WriterContainer>
+      <S.CommentContainer>
+        <h4>N개의 댓글</h4>
+        <div>
+          <S.CommentWrapper>
+            <S.CommentTextArea />
+            <S.ButtonWrapper>
+              <button>댓글 작성</button>
+            </S.ButtonWrapper>
+          </S.CommentWrapper>
+        </div>
+      </S.CommentContainer>
     </Layout>
   );
 }
