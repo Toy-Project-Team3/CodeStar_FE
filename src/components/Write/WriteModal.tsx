@@ -5,44 +5,47 @@ import { Button } from '@/components/Button';
 import * as S from '@/styles/writeModalStyled';
 
 const WriteModal = (props) => {
-  const contents = props.contents;
-  const title = props.title;
-  const modalRef = props.modalRef;
+  const title = props.title[0];
+  const setTitle = props.title[1];
+  const thumbnail = props.thumbnail[0];
+  const setThumbnail = props.thumbnail[1];
+  const accessibility = props.accessibility[0];
+  const setAccessibility = props.accessibility[1];
+  const isClicked = props.isClicked[0];
+  const setIsClicked = props.isClicked[1];
+  const isSubmitBtnClicked = props.isSubmitBtnClicked[0];
+  const setIsSubmitBtnClicked = props.isSubmitBtnClicked[1];
+  const uploadPost = props.uploadPost;
+  const setCreatedAt = props.setCreatedAt;
 
-  const [isPublic, setIsPublic] = useState(false);
-  const [isPrivate, setIsPrivate] = useState(false);
-  const thumbnailRef = useRef();
-  const [thumbnailSrc, setThumbnailSrc] = useState('');
+  const uploadThumbnail = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setThumbnail(reader.result as string);
+      console.log(reader.result);
+    };
+    console.log(e.target.files[0]);
+  };
 
-  const getThumbnail = (e) => {
-    setThumbnailSrc(e.target);
-    console.log(e.target);
-    console.log(thumbnailSrc);
-  };
-  const deleteThumbnail = () => {
-    setThumbnailSrc('');
-  };
-  const handlePostAPI = ({ title, contents, thumbnail, author, createdAt }) => {};
-  const uploadPost = async () => {
-    //서버로 데이터 전송하기
-    await handlePostAPI();
-    //데이터 전송 완료 확인하기
-    await alert('post finished!');
-    // 게시물 상세 페이지로 이동
-  };
-  const cancelUploadPost = () => {
-    //writeModal 다시 사라지게 하기
-  };
   return (
     <>
-      <S.Inner>
+      <S.Background>
         <S.Container>
           <div className="item">
             <h3>포스트 썸네일</h3>
-            {!thumbnailSrc ? <div onClick={deleteThumbnail}>제거</div> : <></>}
+            {thumbnail && (
+              <div
+                onClick={() => {
+                  setThumbnail('');
+                }}
+              >
+                제거
+              </div>
+            )}
             <div className="thumbnailContainer">
-              {thumbnailSrc ? (
-                <Image src={thumbnailSrc} alt="thumbnail" fill object-fit="cover" />
+              {thumbnail ? (
+                <Image src={thumbnail} alt="thumbnail" fill object-fit="cover" />
               ) : (
                 <div className="emptyThumbnail">
                   <svg width="107" height="85" fill="none" viewBox="0 0 107 85">
@@ -56,34 +59,33 @@ const WriteModal = (props) => {
                     ></path>
                   </svg>
                   <input
-                    ref={thumbnailRef}
-                    onChange={getThumbnail}
+                    // ref={thumbnailRef}
+                    onChange={uploadThumbnail}
                     accept="image/*"
                     type="file"
                     id="uploadBtn"
                     name="uploadBtn"
+                    style={{ display: 'none' }}
                   />
-                  <button width={15} height={3.2} border={false} theme={'dark'}>
-                    썸네일 업로드
-                  </button>
+                  <label htmlFor="uploadBtn">썸네일 업로드</label>
                 </div>
               )}
             </div>
-            <h4></h4>
+            <h4>{title}</h4>
           </div>
           <div className="item">
             <h3>공개 설정</h3>
             <div className="buttons">
               <Button
                 onClick={() => {
-                  setIsPublic(true);
+                  setAccessibility(true);
                 }}
               >
                 전체공개
               </Button>
               <Button
                 onClick={() => {
-                  setIsPrivate(true);
+                  setAccessibility(false);
                 }}
               >
                 비공개
@@ -92,16 +94,20 @@ const WriteModal = (props) => {
           </div>
           <div className="item">
             <div className="buttons">
-              <Button width={6.7} height={4} border={false} theme={'dark'} onClick={cancelUploadPost}>
+              <Button
+                onClick={() => {
+                  setIsClicked(false);
+                }}
+              >
                 <span>취소</span>
               </Button>
-              <Button width={10} height={4} border={false} theme={'light'} onClick={uploadPost}>
+              <Button onClick={uploadPost}>
                 <span>출간하기</span>
               </Button>
             </div>
           </div>
         </S.Container>
-      </S.Inner>
+      </S.Background>
     </>
   );
 };

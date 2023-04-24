@@ -1,39 +1,38 @@
 import styled from 'styled-components';
 
-export const Inner = styled.div`
+export const Background = styled.div`
   padding: 20vh 10vw;
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: pink;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: -100vh;
-  z-index: 9;
-  transition: all 1s linear;
+
   /* &:focus {
     transform: translateY(-100vh);
   } */
 `;
 export const Container = styled.div`
-  padding: 32px;
-  height: 425px;
-  width: 351px;
+  padding: 3.2rem;
+  height: 42.5rem;
+  width: 35.1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  gap: 3rem;
   h3 {
-    font-size: 21px;
-    margin-bottom: 8px;
+    font-size: 2.1rem;
+    margin-bottom: 0.8rem;
   }
   .thumbnailContainer {
-    height: 193px;
+    height: 19.3rem;
     position: relative;
+    border: 0.1rem solid black;
   }
   .emptyThumbnail {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -43,7 +42,7 @@ export const Container = styled.div`
   .buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 1rem;
     button {
       outline: none;
       background: none;
