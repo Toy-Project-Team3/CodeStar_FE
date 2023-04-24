@@ -9,7 +9,8 @@ const variants = {
   waterAnimate: (custom: number) => ({
     y: custom + '%',
     transition: {
-      duration: 2,
+      duration: 1.2,
+      type: 'spring',
     },
   }),
 };

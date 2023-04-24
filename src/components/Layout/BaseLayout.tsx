@@ -2,8 +2,9 @@ import React from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import Link from 'next/link';
+import { BaseLayoutProp } from '@/types/componentProps';
 
-function BaseLayout({ children, hasHeader }: { children: React.ReactNode; hasHeader: boolean }) {
+function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   return (
     <S.MainWrapper>
       {hasHeader && (
