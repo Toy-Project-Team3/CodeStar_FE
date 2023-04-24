@@ -108,7 +108,7 @@ export const StickyWrapper = styled.div`
     cursor: pointer;
   }
 
-  .likeCount {
+  .count {
     margin-top: 1rem;
     color: #d9d9d9;
     line-height: 1;
@@ -184,7 +184,7 @@ export const CommentContainer = styled.div`
 
   width: 768px;
   h4 {
-    font-size: 1.5rem;
+    font-size: 2.4rem;
     line-height: 1.8;
     font-weight: 600;
     margin-bottom: 1.5rem;
@@ -195,17 +195,17 @@ export const CommentWrapper = styled.div``;
 
 export const CommentTextArea = styled.textarea`
   resize: none;
-  padding: 1rem 1rem 1.5rem;
+  padding: 1.5rem;
   outline: none;
-  border: 1px solid #f1f3f5;
+  border: 1px solid #2a2a2a;
   margin-bottom: 1.5rem;
   width: 100%;
   border-radius: 0.5rem;
-  min-height: 7rem;
-  font-size: 1.5rem;
+  min-height: 10rem;
+  font-size: 1.8rem;
   color: #d9d9d9;
   line-height: 1.75;
-  background-color: #fff;
+  background-color: #1e1e1e;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -225,5 +225,9 @@ export const ButtonWrapper = styled.div`
     padding: 0 1.8rem;
     height: 3rem;
     font-size: 1.5rem;
+
+    :hover {
+      background-color: #63e6be;
+    }
   }
 `;
