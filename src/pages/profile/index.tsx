@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from '@/styles/profileStyled';
+import { ProfileActivity } from '@/styles/profileStyled';
 import { motion, Variants } from 'framer-motion';
 import CreditScore from '@/components/CreditScore';
-import { ProfileActivity } from '@/styles/profileStyled';
 import Layout from '@/components/Layout';
 
 const variants: Variants = {

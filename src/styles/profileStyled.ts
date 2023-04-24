@@ -120,13 +120,11 @@ export const ProfileCreditScore = styled.div<{ score: number }>`
 export const ProfileActivity = styled.div`
   width: 100%;
   min-height: 10rem;
-
   .activity__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-
     h1 {
       font-size: 3rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};

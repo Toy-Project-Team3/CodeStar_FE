@@ -8,7 +8,7 @@ function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader:
     <S.MainWrapper>
       {hasHeader && (
         <S.Header>
-          <Link href={'/'}>
+          <Link href="/">
             <div className="logo">
               <Logo />
             </div>
