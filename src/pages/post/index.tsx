@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import React from 'react';
 import * as S from '@/styles/postStyled';
 import IconLike from '../../../public/IconLike.svg';
-import IconBad from '../../../public/IconBad.svg';
+import IconDislike from '../../../public/IconDislike.svg';
 
 function Index() {
   const [scrollYValue, setScrollYValue] = React.useState(false);
@@ -40,10 +40,11 @@ function Index() {
                 <div className="sticky--icon">
                   <IconLike />
                 </div>
-                <div className="likeCount">20</div>
+                <div className="count">20</div>
                 <div className="sticky--icon">
-                  <IconBad />
+                  <IconDislike />
                 </div>
+                <div className="count">4</div>
               </S.StickyWrapper>
             </S.StickyContainer>
           </div>
@@ -73,7 +74,7 @@ function Index() {
         <h4>N개의 댓글</h4>
         <div>
           <S.CommentWrapper>
-            <S.CommentTextArea />
+            <S.CommentTextArea placeholder="댓글을 작성하세요" />
             <S.ButtonWrapper>
               <button>댓글 작성</button>
             </S.ButtonWrapper>
