@@ -55,18 +55,28 @@ export const HeaderProfile = styled.div`
 export const MainContent = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   margin-top: 10rem;
-  gap: 4rem;
+  gap: 3rem;
   padding: 0 10rem;
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
-  width: 20%;
+  width: 90%;
   height: 30rem;
   border: 1px solid ${(p) => p.theme.text};
   border-radius: 1rem;
@@ -93,9 +103,4 @@ export const MainContentItem = styled(motion.div)`
       font-size: 1.6rem;
     }
   }
-`;
-
-export const MainContentDummy = styled.div`
-  width: 20%;
-  height: 30rem;
 `;

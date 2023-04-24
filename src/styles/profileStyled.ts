@@ -120,13 +120,11 @@ export const ProfileCreditScore = styled.div<{ score: number }>`
 export const ProfileActivity = styled.div`
   width: 100%;
   min-height: 10rem;
-
   .activity__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-
     h1 {
       font-size: 3rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};
@@ -167,7 +165,43 @@ export const ProfileActivity = styled.div`
     align-items: center;
     gap: 2rem;
     font-size: 2rem;
+    .activity__body {
+    }
+  }
+  a {
+    color: ${(p) => p.theme.text};
+    text-decoration: none;
   }
 `;
 
-export const ProfileBody = styled.div``;
+export const ProfileBody = styled.div`
+  width: 100%;
+  height: fit-content;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  .none-content {
+    width: 100%;
+    height: 100%;
+    font-weight: ${(p) => p.theme.fontWeight.bold};
+    font-size: 3rem;
+    line-height: 1.3;
+  }
+`;
+
+export const ProfileBodyPostItem = styled.div`
+  width: 80%;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .post__img {
+    width: 100%;
+    height: 100%;
+    background-color: ${(p) => p.theme.text};
+  }
+`;

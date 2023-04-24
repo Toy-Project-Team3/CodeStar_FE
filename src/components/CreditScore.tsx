@@ -9,14 +9,15 @@ const variants = {
   waterAnimate: (custom: number) => ({
     y: custom + '%',
     transition: {
-      duration: 2,
+      duration: 1.2,
+      type: 'spring',
     },
   }),
 };
 
 function CreditScore() {
   return (
-    <S.ProfileCreditScore score={50}>
+    <S.ProfileCreditScore score={100}>
       <motion.div
         custom={50}
         variants={variants}

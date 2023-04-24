@@ -2,13 +2,14 @@ import React from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import Link from 'next/link';
+import { BaseLayoutProp } from '@/types/componentProps';
 
-function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader: boolean }) {
+function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   return (
     <S.MainWrapper>
       {hasHeader && (
         <S.Header>
-          <Link href={'/'}>
+          <Link href="/">
             <div className="logo">
               <Logo />
             </div>
@@ -28,4 +29,4 @@ function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader:
   );
 }
 
-export default Layout;
+export default BaseLayout;
