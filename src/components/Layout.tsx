@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import Link from 'next/link';
+import Modal from './Modal';
 
 function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader: boolean }) {
+  const [modalOpen, setModalOpen] = useState(true);
   return (
     <S.MainWrapper>
       {hasHeader && (
@@ -24,6 +26,7 @@ function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader:
         </S.Header>
       )}
       {children}
+      {modalOpen && <Modal setModalOpen={setModalOpen} />}
     </S.MainWrapper>
   );
 }
