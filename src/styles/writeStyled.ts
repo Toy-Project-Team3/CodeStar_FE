@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Background = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: black;
@@ -8,6 +8,7 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   box-sizing: border-box;
+  min-width: 40rem;
   width: 100%;
   height: 100%;
   padding: 4.8rem;
@@ -35,6 +36,7 @@ export const TitleContainer = styled.div`
     }
   }
 `;
+
 export const WriteFooter = styled.div`
   height: 6.4rem;
   display: flex;

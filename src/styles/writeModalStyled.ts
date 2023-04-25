@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '@/styles/buttonStyled';
 
 export const Background = styled.div`
   padding: 20vh 10vw;
@@ -21,10 +22,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 1rem;
   h3 {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
     margin-bottom: 0.8rem;
+  }
+  h4 {
+    font-size: 3.5rem;
   }
   .thumbnailContainer {
     height: 19.3rem;
@@ -37,6 +41,17 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
+  }
+  label {
+    border: 1px solid black;
+    border-radius: 0.4rem;
+    height: 4rem;
+    padding: 0 2rem;
+    font-weight: 800;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
     align-items: center;
   }
   .buttons {
