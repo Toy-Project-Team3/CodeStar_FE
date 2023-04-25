@@ -1,33 +1,47 @@
-import React, { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/Button';
 import * as S from '@/styles/writeModalStyled';
 
 const WriteModal = (props) => {
-  const title = props.title[0];
-  const setTitle = props.title[1];
-  const thumbnail = props.thumbnail[0];
-  const setThumbnail = props.thumbnail[1];
-  const accessibility = props.accessibility[0];
-  const setAccessibility = props.accessibility[1];
-  const isClicked = props.isClicked[0];
-  const setIsClicked = props.isClicked[1];
-  const isSubmitBtnClicked = props.isSubmitBtnClicked[0];
-  const setIsSubmitBtnClicked = props.isSubmitBtnClicked[1];
-  const uploadPost = props.uploadPost;
-  const setCreatedAt = props.setCreatedAt;
+  const setIsClicked = props.setIsClicked;
+  const title = props.title;
+  const contents = props.contents;
+  const [thumbnail, setThumbnail] = useState('');
+  const [isPrivate, setIsPrivate] = useState(false);
+  const createdAt = props.createdAt;
+  const [post, setPost] = useState({
+    title,
+    contents,
+    thumbnail,
+    isPrivate,
+    createdAt,
+  });
+  const putEditWrite = props.putEditWrite;
 
   const uploadThumbnail = (e) => {
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
       setThumbnail(reader.result as string);
-      console.log(reader.result);
     };
-    console.log(e.target.files[0]);
   };
-
+  const clickPostBtn = () => {
+    if (title) {
+      console.log('title:', title);
+      console.log('contents:', contents);
+      console.log('thumbnail:', thumbnail);
+      console.log('isPrivate:', isPrivate);
+      console.log('createdAt:', createdAt);
+      setPost({ title, contents, thumbnail, isPrivate, createdAt });
+      putEditWrite({ title, contents, thumbnail, isPrivate, createdAt });
+    } else {
+      alert('제목을 작성해주세요');
+    }
+  };
+  useEffect(() => {
+    setIsPrivate(false);
+  }, []);
   return (
     <>
       <S.Background>
@@ -59,7 +73,6 @@ const WriteModal = (props) => {
                     ></path>
                   </svg>
                   <input
-                    // ref={thumbnailRef}
                     onChange={uploadThumbnail}
                     accept="image/*"
                     type="file"
@@ -78,14 +91,14 @@ const WriteModal = (props) => {
             <div className="buttons">
               <Button
                 onClick={() => {
-                  setAccessibility(true);
+                  setIsPrivate(false);
                 }}
               >
                 전체공개
               </Button>
               <Button
                 onClick={() => {
-                  setAccessibility(false);
+                  setIsPrivate(true);
                 }}
               >
                 비공개
@@ -101,7 +114,7 @@ const WriteModal = (props) => {
               >
                 <span>취소</span>
               </Button>
-              <Button onClick={uploadPost}>
+              <Button onClick={clickPostBtn}>
                 <span>출간하기</span>
               </Button>
             </div>
