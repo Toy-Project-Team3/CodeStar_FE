@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import * as S from '@/styles/styled';
-import { MainContentDummy } from '@/styles/styled';
-import Layout from '@/components/Layout';
+import BaseLayout from '@/components/Layout/BaseLayout';
 import React from 'react';
 
 export default function Home() {
@@ -13,12 +12,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout hasHeader>
+      <BaseLayout hasHeader>
         <S.MainContent>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
-            if (item > 10) {
-              return <MainContentDummy key={item} />;
-            }
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
             return (
               <S.MainContentItem
                 layout
@@ -40,7 +36,7 @@ export default function Home() {
             );
           })}
         </S.MainContent>
-      </Layout>
+      </BaseLayout>
     </>
   );
 }
