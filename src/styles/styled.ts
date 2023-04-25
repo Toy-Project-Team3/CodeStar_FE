@@ -10,7 +10,7 @@ export const MainWrapper = styled.div`
 `;
 
 export const Header = styled.div`
-  z-index: 100;
+  z-index: 1;
   background: ${(p) => p.theme.background.dark};
   width: 100%;
   height: 8rem;
