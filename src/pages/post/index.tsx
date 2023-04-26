@@ -1,8 +1,10 @@
 import Layout from '@/components/Layout';
 import React from 'react';
 import * as S from '@/styles/postStyled';
-import IconLike from '../../../public/IconLike.svg';
-import IconDislike from '../../../public/IconDislike.svg';
+import IconDislike from '@/components/IconDislike';
+import Comment from '@/components/Comment';
+import CreditScore from '@/components/CreditScore';
+import IconLike from '@/components/IconLike';
 
 function Index() {
   const [scrollYValue, setScrollYValue] = React.useState(false);
@@ -67,6 +69,9 @@ function Index() {
             </div>
             <div className="description">소개</div>
           </div>
+          <div className="score">
+            <CreditScore />
+          </div>
         </S.WriterWrapper>
         <S.UnderLine></S.UnderLine>
       </S.WriterContainer>
@@ -79,6 +84,11 @@ function Index() {
               <button>댓글 작성</button>
             </S.ButtonWrapper>
           </S.CommentWrapper>
+        </div>
+        <div className="comment--container">
+          {[1, 2, 3, 4].map((key) => (
+            <Comment key={key} />
+          ))}
         </div>
       </S.CommentContainer>
     </Layout>

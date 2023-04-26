@@ -129,6 +129,7 @@ export const WriterContainer = styled.div`
 export const WriterWrapper = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 
   img {
     display: block;
@@ -168,6 +169,14 @@ export const WriterWrapper = styled.div`
       letter-spacing: -0.004em;
     }
   }
+
+  .score {
+    position: absolute;
+    right: 0;
+
+    width: 10rem;
+    height: 10rem;
+  }
 `;
 
 export const UnderLine = styled.div`
@@ -188,6 +197,10 @@ export const CommentContainer = styled.div`
     line-height: 1.8;
     font-weight: 600;
     margin-bottom: 1.5rem;
+  }
+
+  .comment-container {
+    margin-top: 2.5rem;
   }
 `;
 
