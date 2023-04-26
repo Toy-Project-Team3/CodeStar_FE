@@ -18,5 +18,13 @@ declare module 'styled-components' {
       semiBold: number;
       bold: number;
     };
+    color: {
+      highlight: string;
+      darkHighlight: string;
+      dark: string;
+      dark2: string;
+      lightDark: string;
+      light: string;
+    };
   }
 }

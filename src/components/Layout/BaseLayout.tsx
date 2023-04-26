@@ -2,20 +2,28 @@ import React, { useState } from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import Link from 'next/link';
-import Modal from './Modal';
+import Modal from '../Modal';
+import { BaseLayoutProp } from '@/types/componentProps';
+import IconSearch from '../IconSearch';
 
-function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader: boolean }) {
-  const [modalOpen, setModalOpen] = useState(true);
+function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
   return (
     <S.MainWrapper>
       {hasHeader && (
         <S.Header>
-          <Link href={'/'}>
+          <Link href="/">
             <div className="logo">
               <Logo />
             </div>
           </Link>
           <div>
+            <S.HeaderSearchButton>
+              <Link href="/search">
+                <IconSearch />
+              </Link>
+            </S.HeaderSearchButton>
             <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               글쓰기
             </S.HeaderWriteButton>
@@ -31,4 +39,4 @@ function Layout({ children, hasHeader }: { children: React.ReactNode; hasHeader:
   );
 }
 
-export default Layout;
+export default BaseLayout;
