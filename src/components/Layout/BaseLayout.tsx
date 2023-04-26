@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/components/Logo';
 import Link from 'next/link';
+import Modal from '../Modal';
 import { BaseLayoutProp } from '@/types/componentProps';
 import IconSearch from '../IconSearch';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
   return (
     <S.MainWrapper>
       {hasHeader && (
@@ -31,6 +34,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
         </S.Header>
       )}
       {children}
+      {modalOpen && <Modal setModalOpen={setModalOpen} />}
     </S.MainWrapper>
   );
 }
