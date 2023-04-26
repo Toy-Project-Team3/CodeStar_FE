@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import * as S from '@/styles/styled';
-import Logo from '@/components/Logo';
-import { MainContentItem } from '@/styles/styled';
+import { MainContentDummy } from '@/styles/styled';
+import Layout from '@/components/Layout';
+import React from 'react';
 
 export default function Home() {
   return (
@@ -12,26 +13,34 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <S.MainWrapper>
-        <S.Header>
-          <div className="logo">
-            <Logo />
-          </div>
-          <div>
-            <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              글쓰기
-            </S.HeaderWriteButton>
-            <S.HeaderProfile></S.HeaderProfile>
-          </div>
-        </S.Header>
+      <Layout hasHeader>
         <S.MainContent>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
-            <S.MainContentItem key={item} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              {item}
-            </S.MainContentItem>
-          ))}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => {
+            if (item > 10) {
+              return <MainContentDummy key={item} />;
+            }
+            return (
+              <S.MainContentItem
+                layout
+                key={item}
+                initial={{
+                  boxShadow: '0 0 1.3rem rgba(0, 0, 0, 0.2)',
+                }}
+                whileHover={{
+                  y: -5,
+                  boxShadow: '0 1rem 1.3rem rgba(0, 0, 0, 0.2)',
+                }}
+              >
+                <div className="thumbnail"></div>
+                <div className="content">
+                  <div className="title">제목</div>
+                  <div className="description">설명</div>
+                </div>
+              </S.MainContentItem>
+            );
+          })}
         </S.MainContent>
-      </S.MainWrapper>
+      </Layout>
     </>
   );
 }
