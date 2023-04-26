@@ -23,9 +23,9 @@ function Index() {
             </Link>
             <div className="owner">
               <div className="name">
-                <Link href="javascript:void(0)">이병욱</Link>
+                <Link href="javascript:void(0)">{data[0]?.author.userName}</Link>
               </div>
-              <div className="description"></div>
+              <div className="description">{data[0]?.author.bio}</div>
             </div>
           </div>
           <S.UnderLine></S.UnderLine>
