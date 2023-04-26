@@ -2,6 +2,7 @@ import Head from 'next/head';
 import * as S from '@/styles/styled';
 import BaseLayout from '@/components/Layout/BaseLayout';
 import React from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -20,17 +21,25 @@ export default function Home() {
                 layout
                 key={item}
                 initial={{
-                  boxShadow: '0 0 1.3rem rgba(0, 0, 0, 0.2)',
+                  y: 10,
+                  opacity: 0,
+                }}
+                animate={{
+                  y: 0,
+                  opacity: 1,
                 }}
                 whileHover={{
-                  y: -5,
-                  boxShadow: '0 1rem 1.3rem rgba(0, 0, 0, 0.2)',
+                  y: -3,
                 }}
               >
-                <div className="thumbnail"></div>
+                <div className="thumbnail">
+                  <Link href={{ pathname: `/post`, query: { id: item } }} />
+                </div>
                 <div className="content">
-                  <div className="title">제목</div>
-                  <div className="description">설명</div>
+                  <Link href={{ pathname: `/post`, query: { id: item } }}>
+                    <div className="title">제목</div>
+                    <div className="description">설명</div>
+                  </Link>
                 </div>
               </S.MainContentItem>
             );

@@ -32,6 +32,20 @@ export const Header = styled.div`
   }
 `;
 
+export const HeaderSearchButton = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #f5f5fa;
+  transition: 0.2s;
+  :hover {
+    transform: scale(1.2);
+  }
+  a {
+    color: inherit;
+  }
+`;
+
 export const HeaderWriteButton = styled(motion.button)`
   width: 14rem;
   cursor: pointer;
@@ -77,24 +91,32 @@ export const MainContent = styled.div`
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
   width: 90%;
-  height: 30rem;
+  height: 35rem;
   border: 1px solid ${(p) => p.theme.text};
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
   gap: 2rem;
   .thumbnail {
     width: 100%;
-    height: 10rem;
+    height: 50%;
     background-color: ${(p) => p.theme.text};
-    border-radius: 1rem;
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
   .content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
     .title {
       font-size: 2.5rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};

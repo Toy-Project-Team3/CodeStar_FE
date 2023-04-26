@@ -6,6 +6,7 @@ import { motion, Variants } from 'framer-motion';
 import { ProfileActivity } from '@/styles/profileStyled';
 import CreditScore from '@/components/CreditScore';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const variants: Variants = {
   hover: {
@@ -27,12 +28,12 @@ interface ProfileConstants {
 }
 
 const profileConstants: ProfileConstants = {
-  COMMENT: '댓글',
   LIKE: '좋아요',
   MYPOSTS: '게시글',
 };
 
 function ProfileLayout({ children, hasHeader }: ProfileLayoutProp) {
+  const route = useRouter();
   return (
     <BaseLayout hasHeader={hasHeader}>
       <S.ProfileWrapper>
@@ -55,15 +56,19 @@ function ProfileLayout({ children, hasHeader }: ProfileLayoutProp) {
             <ProfileActivity>
               <div className="activity__header">
                 <h1>활동</h1>
-                <button>더보기</button>
               </div>
               <div className="activity__body">
                 {Object.keys(profileConstants).map((key, index) => (
-                  <div key={index}>
+                  <div
+                    key={index}
+                    className={
+                      'activity__body__item' + (route.pathname.split('/')[2] === key.toLowerCase() ? ' active' : '')
+                    }
+                  >
                     <Link href={`/profile/${key.toLowerCase()}`}>
                       <span>{profileConstants[key]}</span>
                     </Link>
-                    <div>0</div>
+                    <p>0</p>
                   </div>
                 ))}
               </div>
