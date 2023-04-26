@@ -5,6 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useQuery } from 'react-query';
 import { getPosts } from '@/utils/requests';
+import Image from 'next/image';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
@@ -24,7 +25,7 @@ export default function Home() {
               return (
                 <S.MainContentItem
                   layout
-                  key={item.postID}
+                  key={item.postId}
                   initial={{
                     y: 10,
                     opacity: 0,
@@ -37,12 +38,11 @@ export default function Home() {
                     y: -3,
                   }}
                 >
-                  <Link href={{ pathname: `/post`, query: { id: item.postID } }}>
-                    {}
-                    {/*<Image className="thumnail" src={item.thumbnail} alt={item.title} width="200" height="200" />*/}
+                  <Link href={{ pathname: `/post`, query: { id: item.postId } }}>
+                    <img className="thumnail" src={item.thumbnail} alt={item.title} />
                   </Link>
                   <div className="content">
-                    <Link href={{ pathname: `/post`, query: { id: item.postID } }}>
+                    <Link href={{ pathname: `/post`, query: { id: item.postId } }}>
                       <div className="title">{item.title}</div>
                     </Link>
                   </div>
