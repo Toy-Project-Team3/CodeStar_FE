@@ -1,48 +1,52 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import EmptyThumbnail from '../EmptyThumbnail';
-import { Button } from '@/components/Button';
 import * as S from '@/styles/writeModalStyled';
 import * as B from '@/styles/buttonStyled';
+import { File } from 'buffer';
+import { WriteModalProps, Post } from '@/types/Posts';
 
-// interface WriteModalProps {
-//   title: string;
-//   contents:
-// }
-
-const WriteModal = (props: any) => {
-  const [isActive, setIsActive] = useState(true);
+const WriteModal: React.FC<Props> = (props: WriteModalProps) => {
+  const [isActive, setIsActive] = useState<boolean>(true);
   const setIsClicked = props.setIsClicked;
   const title = props.title;
-  const contents = props.contents;
-  const [thumbnail, setThumbnail] = useState('');
-  const [isPrivate, setIsPrivate] = useState(false);
-  const createdAt = props.createdAt;
-  const [post, setPost] = useState({
-    title,
-    contents,
-    thumbnail,
-    isPrivate,
-    createdAt,
+  const content = props.content;
+  const [thumbnailSrc, setThumbnailSrc] = useState<string>('');
+  const [thumbnail, setThumbnail] = useState<File>();
+  const [isPrivate, setIsPrivate] = useState<boolean>(false);
+  const [post, setPost] = useState<Post>({
+    title: title,
+    content: content,
+    thumbnail: thumbnail,
+    isPrivate: isPrivate,
   });
-  const putEditWrite = props.putEditWrite;
+  const postPost = props.postPost;
+  const putEditPost = props.putEditPost;
 
-  const uploadThumbnail = (e) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      setThumbnail(reader.result as string);
-    };
+  const formData = new FormData();
+
+  for (const key in post) {
+    formData.append(key, post[key]);
+  }
+
+  console.log('formData:', formData);
+  console.log('post:', post);
+  const uploadThumbnail = async (e) => {
+    const file: File = e.target.files[0];
+    const url = URL.createObjectURL(file);
+    // console.log(url);
+    // console.log(typeof url);
+    console.log('file:', file);
+    console.log('url:', url);
+    setThumbnail(file);
+    setThumbnailSrc(url);
   };
   const clickPostBtn = () => {
     if (title) {
-      console.log('title:', title);
-      console.log('contents:', contents);
-      console.log('thumbnail:', thumbnail);
-      console.log('isPrivate:', isPrivate);
-      console.log('createdAt:', createdAt);
-      setPost({ title, contents, thumbnail, isPrivate, createdAt });
-      putEditWrite({ title, contents, thumbnail, isPrivate, createdAt });
+      const post: Post = { title: title, content: content, thumbnail: thumbnail, isPrivate: isPrivate };
+      setPost(post);
+      postPost(formData);
+      // putEditPost({ title, content, thumbnail, isPrivate });
     } else {
       alert('제목을 작성해주세요');
     }
@@ -57,22 +61,23 @@ const WriteModal = (props: any) => {
     <>
       <S.Background>
         <S.Container>
-          <div className="item">
+          <div className="thumbnailContainer">
             <h3>포스트 썸네일</h3>
-            <div className={thumbnail && 'btnContainer'}>
+            <div className={thumbnailSrc && 'btnContainer'}>
               {thumbnail && (
                 <B.UnderlinedBtn
                   onClick={() => {
-                    setThumbnail('');
+                    setThumbnailSrc('');
                   }}
                 >
                   제거
                 </B.UnderlinedBtn>
               )}
             </div>
+
             <div className="thumbnailImgContainer">
-              {thumbnail ? (
-                <Image src={thumbnail} alt="thumbnail" fill object-fit="cover" />
+              {thumbnailSrc ? (
+                <Image src={thumbnailSrc} alt="thumbnail" fill object-fit="cover" />
               ) : (
                 <div className="emptyThumbnail">
                   <EmptyThumbnail />
@@ -90,6 +95,8 @@ const WriteModal = (props: any) => {
                 </div>
               )}
             </div>
+          </div>
+          <div className="titleContainer">
             <h3>제목</h3>
             <h4>{title}</h4>
           </div>
