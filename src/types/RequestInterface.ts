@@ -6,21 +6,24 @@ export interface PostInterface {
   isPrivate: boolean;
   author: Author;
   commentList: CommentList[];
-  likes: Like[];
+  likes?: Like[];
+  dislikes?: Like[];
+  createdAt: Date;
 }
 
 export interface Author {
   id: string;
-  userID: string;
+  userId: string;
   userName: string;
   profileImg: string;
+  bio?: string;
 }
 
 export interface CommentList {
   commentID: string;
   content: string;
   createdAt: Date;
-  updatedAt: Date;
+  author: Author;
 }
 
 export interface Like {
