@@ -1,8 +1,8 @@
 export interface PostInterface {
-  postId: string;
+  postId?: string;
   title: string;
-  content: string;
-  thumbnail: string;
+  content?: string;
+  thumbnail?: File;
   isPrivate: boolean;
   author: Author;
   commentList: CommentList[];

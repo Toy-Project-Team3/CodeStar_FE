@@ -36,7 +36,7 @@ export const modalForm = styled.div`
     height: 2.5rem;
     cursor: pointer;
   }
-  .contents {
+  .content {
     display: flex;
     width: 100%;
   }
