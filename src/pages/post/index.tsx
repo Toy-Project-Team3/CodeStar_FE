@@ -6,8 +6,11 @@ import Comment from '@/components/Comment';
 import CreditScore from '@/components/CreditScore';
 import IconLike from '@/components/IconLike';
 import { useQuery } from 'react-query';
-import { getPosts } from '@/utils/requests';
+import { getPost, getPosts } from '@/utils/requests';
 import { useRouter } from 'next/router';
+import { CommentList } from '@/types/RequestInterface';
+import { getDate } from '@/utils/dateFormat';
+import Link from 'next/link';
 
 function Index() {
   const [scrollYValue, setScrollYValue] = React.useState(false);
@@ -16,9 +19,9 @@ function Index() {
       window.scrollY > 290 ? setScrollYValue(true) : setScrollYValue(false);
     });
   });
-  const router = useRouter();
-  const { data } = useQuery('posts', getPosts);
-  const post = data?.find((item) => item.postId === router.query.id);
+  const query = useRouter().query;
+  console.log(query);
+  const { data: post } = useQuery('post', () => getPost(query.userId, query.postId));
   console.log(post);
 
   return (
@@ -30,17 +33,18 @@ function Index() {
           </div>
           {/* ButtonContainer 자신의 게시글에서만 표시 */}
           <S.ButtonContainer>
-            <button>통계</button>
             <button>수정</button>
             <button>삭제</button>
           </S.ButtonContainer>
           <S.InformContainer>
             <div>
               <span className="username">
-                <a href="#">{post?.author.userName}</a>
+                <Link href={{ pathname: `/blog`, query: { id: post?.author.id } }} as={'@' + post?.author.userId}>
+                  {post?.author.userName}
+                </Link>
               </span>
               <span className="separator">·</span>
-              <span>작성일</span>
+              <span>{getDate(post?.createdAt)}</span>
             </div>
           </S.InformContainer>
           <div style={{ position: 'relative', marginTop: '2rem' }}>
@@ -53,29 +57,33 @@ function Index() {
                 <div className="sticky--icon">
                   <IconDislike />
                 </div>
-                <div className="count">4</div>
+                <div className="count">{post?.dislikes.length}</div>
               </S.StickyWrapper>
             </S.StickyContainer>
           </div>
-          <S.ThumbnailImage src="/img_dummy.jpg" />
+          <S.ThumbnailImage src={post?.thumbnail} />
         </S.TitleContainer>
       </S.MainContainer>
       <S.ContentContainer>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum asperiores minus, necessitatibus similique, quos
         et molestiae, deleniti maiores sed libero recusandae veniam quae dolor accusantium ex expedita officiis velit
-        voluptatem, post:
+        voluptatem, <br />
+        <br />
+        post:
         {post?.content}
       </S.ContentContainer>
       <S.WriterContainer>
         <S.WriterWrapper>
-          <a href="#">
-            <img src="/img_dummy.jpg" alt="profile" />
-          </a>
+          <Link href={{ pathname: `/blog`, query: { usedId: post?.author.userId } }} as={'@' + post?.author.userId}>
+            <img src={post?.author.profileImg} alt="profile" />
+          </Link>
           <div className="writerInfo">
             <div className="name">
-              <a href="#">{post?.author.userName}</a>
+              <Link href={{ pathname: `/blog`, query: { usedId: post?.author.userId } }} as={'@' + post?.author.userId}>
+                {post?.author.userName}
+              </Link>
             </div>
-            <div className="description">소개</div>
+            <div className="description">{post?.author.bio}</div>
           </div>
           <div className="score">
             <CreditScore width={10} height={10} />
@@ -84,7 +92,7 @@ function Index() {
         <S.UnderLine></S.UnderLine>
       </S.WriterContainer>
       <S.CommentContainer>
-        <h4>N개의 댓글</h4>
+        <h4>{post?.commentList.length}개의 댓글</h4>
         <div>
           <S.CommentWrapper>
             <S.CommentTextArea placeholder="댓글을 작성하세요" />
@@ -94,8 +102,8 @@ function Index() {
           </S.CommentWrapper>
         </div>
         <div className="comment--container">
-          {[1, 2, 3, 4].map((key) => (
-            <Comment key={key} />
+          {post?.commentList.map((comment: CommentList) => (
+            <Comment key={comment.commentID} comment={comment} />
           ))}
         </div>
       </S.CommentContainer>
