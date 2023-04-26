@@ -106,6 +106,7 @@ export const StickyWrapper = styled.div`
     border-radius: 2rem;
     color: #acacac;
     cursor: pointer;
+    padding-top: 0.2rem;
   }
 
   .count {
