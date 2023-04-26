@@ -18,7 +18,9 @@ function Modal({ setModalOpen }: { setModalOpen: (value: boolean) => void }) {
             <Image src={welcome} alt="환영" />
             <h4>환영합니다</h4>
           </S.modalLeft>
-          <S.modalRight>{login ? <LoginForm setLogin={setLogin} /> : <JoinForm setLogin={setLogin} />}</S.modalRight>
+          <S.modalRight>
+            {login ? <LoginForm setLogin={setLogin} setModalOpen={setModalOpen} /> : <JoinForm setLogin={setLogin} />}
+          </S.modalRight>
         </div>
       </S.modalForm>
     </S.modalWrapper>
