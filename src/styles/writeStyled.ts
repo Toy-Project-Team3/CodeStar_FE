@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Background = styled.div`
+  position: absolute;
   height: 100vh;
   width: 100vw;
   background-color: black;
@@ -21,6 +22,7 @@ export const TitleContainer = styled.div`
   width: 100%;
   input {
     box-sizing: border-box;
+    border-bottom: 2px solid transparent;
     height: 100%;
     width: 100%;
     padding: 1rem 2rem 0 2rem;
@@ -32,7 +34,7 @@ export const TitleContainer = styled.div`
     background-color: transparent;
     color: #fff;
     &:focus {
-      border-bottom: 2px solid #fff;
+      border-bottom: 2px solid ${(p) => p.theme.color.light};
     }
   }
 `;
@@ -40,16 +42,10 @@ export const TitleContainer = styled.div`
 export const WriteFooter = styled.div`
   height: 6.4rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 1.2rem;
-  button {
-    border-radius: 0.4rem;
-    border: 0;
-    outline: none;
-    height: 4rem;
-    padding: 0 2rem;
-    font-weight: 800;
-    font-size: 1.8rem;
+  .buttons {
+    display: flex;
+    gap: 1.2rem;
   }
 `;
