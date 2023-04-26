@@ -32,6 +32,20 @@ export const Header = styled.div`
   }
 `;
 
+export const HeaderSearchButton = styled.button`
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #f5f5fa;
+  transition: 0.2s;
+  :hover {
+    transform: scale(1.2);
+  }
+  a {
+    color: inherit;
+  }
+`;
+
 export const HeaderWriteButton = styled(motion.button)`
   width: 14rem;
   cursor: pointer;
