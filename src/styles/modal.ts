@@ -52,7 +52,8 @@ export const modalLeft = styled.div`
   font-size: 2.4rem;
   font-weight: 700;
   background: #e3e3ed;
-  img {
+  img,
+  svg {
     width: 100%;
     height: auto;
     margin-bottom: 2rem;
