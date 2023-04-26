@@ -39,7 +39,7 @@ export default function Home() {
                   }}
                 >
                   <Link href={{ pathname: `/post`, query: { id: item.postId } }}>
-                    <img className="thumnail" src={item.thumbnail} alt={item.title} />
+                    <img className="thumbnail" src={item.thumbnail} alt={item.title} />
                   </Link>
                   <div className="content">
                     <Link href={{ pathname: `/post`, query: { id: item.postId } }}>

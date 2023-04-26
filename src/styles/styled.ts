@@ -69,15 +69,16 @@ export const HeaderProfile = styled.div`
 export const MainContent = styled.div`
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-  justify-content: center;
+  display: flex;
+  /* grid-template-columns: repeat(4, 1fr);
+  place-items: center; */
+  justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   margin-top: 10rem;
   gap: 3rem;
   padding: 0 10rem;
-  @media (max-width: 1200px) {
+  /* @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 900px) {
@@ -85,22 +86,21 @@ export const MainContent = styled.div`
   }
   @media (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
-  }
+  } */
 `;
 
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
-  width: 100px;
+  width: 25rem;
   height: 35rem;
   border: 1px solid ${(p) => p.theme.text};
   border-radius: 0.4rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   .thumbnail {
-    width: 10px;
-    height: 50px;
+    width: 100%;
+    height: 20rem;
     background-color: ${(p) => p.theme.text};
     a {
       display: block;
