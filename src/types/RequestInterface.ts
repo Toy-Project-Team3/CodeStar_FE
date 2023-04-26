@@ -1,19 +1,19 @@
 export interface PostInterface {
-  postId: string;
+  postId?: string;
   title: string;
-  content: string;
-  thumbnail: string;
+  content?: string;
+  thumbnail?: File;
   isPrivate: boolean;
-  author: Author;
-  commentList: CommentList[];
-  likes: Like[];
+  author?: Author;
+  commentList?: CommentList[];
+  likes?: Like[];
 }
 
 export interface Author {
   id: string;
   userID: string;
   userName: string;
-  profileImg: string;
+  profileImg?: string;
 }
 
 export interface CommentList {

@@ -90,7 +90,7 @@ export const MainContent = styled.div`
 
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
-  width: 90%;
+  width: 100px;
   height: 35rem;
   border: 1px solid ${(p) => p.theme.text};
   border-radius: 0.4rem;
@@ -99,8 +99,8 @@ export const MainContentItem = styled(motion.div)`
   flex-direction: column;
   gap: 2rem;
   .thumbnail {
-    width: 100%;
-    height: 50%;
+    width: 10px;
+    height: 50px;
     background-color: ${(p) => p.theme.text};
     a {
       display: block;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Button } from '@/styles/buttonStyled';
 
 export const Background = styled.div`
   position: absolute;
@@ -12,11 +11,10 @@ export const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(100px);
 `;
 export const Container = styled.div`
   padding: 3.2rem;
-  height: 50rem;
+  height: 52rem;
   width: 35.1rem;
   display: flex;
   flex-direction: column;
@@ -32,9 +30,11 @@ export const Container = styled.div`
     color: ${(p) => p.theme.color.light};
   }
   h4 {
+    display: flex;
+    align-items: center;
     height: 3.5rem;
     padding: 0.7rem 1rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
     background-color: ${(p) => p.theme.color.dark2};
     color: #fff;
   }
