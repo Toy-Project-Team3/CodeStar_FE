@@ -2,6 +2,7 @@ import Head from 'next/head';
 import * as S from '@/styles/styled';
 import BaseLayout from '@/components/Layout/BaseLayout';
 import React from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -31,10 +32,14 @@ export default function Home() {
                   y: -3,
                 }}
               >
-                <div className="thumbnail"></div>
+                <div className="thumbnail">
+                  <Link href={{ pathname: `/post`, query: { id: item } }} />
+                </div>
                 <div className="content">
-                  <div className="title">제목</div>
-                  <div className="description">설명</div>
+                  <Link href={{ pathname: `/post`, query: { id: item } }}>
+                    <div className="title">제목</div>
+                    <div className="description">설명</div>
+                  </Link>
                 </div>
               </S.MainContentItem>
             );

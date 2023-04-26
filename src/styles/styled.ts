@@ -88,12 +88,21 @@ export const MainContentItem = styled(motion.div)`
     width: 100%;
     height: 50%;
     background-color: ${(p) => p.theme.text};
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
   .content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 1rem;
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
     .title {
       font-size: 2.5rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};
