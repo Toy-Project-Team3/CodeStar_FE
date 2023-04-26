@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout';
+import Layout from '@/components/Layout/BaseLayout';
 import React from 'react';
 import * as S from '@/styles/postStyled';
 import IconDislike from '@/components/IconDislike';
@@ -70,7 +70,7 @@ function Index() {
             <div className="description">소개</div>
           </div>
           <div className="score">
-            <CreditScore />
+            <CreditScore width={10} height={10} />
           </div>
         </S.WriterWrapper>
         <S.UnderLine></S.UnderLine>
