@@ -38,7 +38,7 @@ export const ButtonContainer = styled.div`
     background: none;
     cursor: pointer;
     color: #acacac;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
     font-size: 1.6rem;
     :hover {
       color: #ececec;
@@ -52,6 +52,7 @@ export const InformContainer = styled.div`
   align-items: center;
   font-size: 1.6rem;
   color: #d9d9d9;
+  margin-bottom: 5rem;
   .username {
     color: #ececec;
     font-weight: bold;
@@ -120,6 +121,7 @@ export const StickyWrapper = styled.div`
 `;
 
 export const ContentContainer = styled(TitleContainer)`
+  margin-top: 5rem;
   font-size: 10rem;
 `;
 
