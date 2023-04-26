@@ -3,8 +3,12 @@ import * as S from '@/styles/styled';
 import BaseLayout from '@/components/Layout/BaseLayout';
 import React from 'react';
 import Link from 'next/link';
+import { useQuery } from 'react-query';
+import { getPosts } from '@/utils/requests';
 
 export default function Home() {
+  const { data } = useQuery('posts', getPosts);
+  console.log(data);
   return (
     <>
       <Head>
@@ -15,35 +19,36 @@ export default function Home() {
       </Head>
       <BaseLayout hasHeader>
         <S.MainContent>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => {
-            return (
-              <S.MainContentItem
-                layout
-                key={item}
-                initial={{
-                  y: 10,
-                  opacity: 0,
-                }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                whileHover={{
-                  y: -3,
-                }}
-              >
-                <div className="thumbnail">
-                  <Link href={{ pathname: `/post`, query: { id: item } }} />
-                </div>
-                <div className="content">
-                  <Link href={{ pathname: `/post`, query: { id: item } }}>
-                    <div className="title">제목</div>
-                    <div className="description">설명</div>
+          {data &&
+            data.map((item) => {
+              return (
+                <S.MainContentItem
+                  layout
+                  key={item.postID}
+                  initial={{
+                    y: 10,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    y: 0,
+                    opacity: 1,
+                  }}
+                  whileHover={{
+                    y: -3,
+                  }}
+                >
+                  <Link href={{ pathname: `/post`, query: { id: item.postID } }}>
+                    {}
+                    {/*<Image className="thumnail" src={item.thumbnail} alt={item.title} width="200" height="200" />*/}
                   </Link>
-                </div>
-              </S.MainContentItem>
-            );
-          })}
+                  <div className="content">
+                    <Link href={{ pathname: `/post`, query: { id: item.postID } }}>
+                      <div className="title">{item.title}</div>
+                    </Link>
+                  </div>
+                </S.MainContentItem>
+              );
+            })}
         </S.MainContent>
       </BaseLayout>
     </>
