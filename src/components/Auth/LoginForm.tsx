@@ -1,6 +1,7 @@
 import React from 'react';
 import { instance } from '../../utils/axiosInstance';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { setCookie } from '@/utils/cookies';
 import * as S from '@/styles/modal';
 
 interface FormValues {
@@ -11,9 +12,10 @@ interface FormValues {
 interface LoginFormProps {
   setLogin: (value: boolean) => void;
   setModalOpen: (value: boolean) => void;
+  setToken: (token: boolean) => void;
 }
 
-function LoginForm({ setLogin, setModalOpen }: LoginFormProps) {
+function LoginForm({ setLogin, setModalOpen, setToken }: LoginFormProps) {
   const {
     register,
     handleSubmit,
@@ -24,6 +26,8 @@ function LoginForm({ setLogin, setModalOpen }: LoginFormProps) {
     try {
       const response = await instance.post('/auth/login', data);
       setModalOpen(false);
+      setToken(response.data.accessToken);
+      setCookie(response.data.accessToken, { path: '/', maxAge: 3600, sameSite: 'strict' });
       console.log(response.data);
     } catch (error) {
       console.log(error);

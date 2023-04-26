@@ -15,7 +15,7 @@ export const Header = styled.div`
   width: 100%;
   height: 8rem;
   display: flex;
-  padding: 2rem 10rem;
+  padding: 0 10rem;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -23,12 +23,13 @@ export const Header = styled.div`
     cursor: pointer;
     svg {
       width: 15rem;
-      height: 10rem;
+      height: 4em;
     }
   }
   div {
     display: flex;
-    gap: 4rem;
+    align-items: center;
+    gap: 3rem;
   }
 `;
 
@@ -47,15 +48,36 @@ export const HeaderSearchButton = styled.button`
 `;
 
 export const HeaderWriteButton = styled(motion.button)`
-  width: 14rem;
+  width: 10rem;
+  height: 4rem;
   cursor: pointer;
   background-color: transparent;
   color: ${(p) => p.theme.text};
   border: 0.2rem solid ${(p) => p.theme.text};
   font-weight: ${(p) => p.theme.fontWeight.bold};
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   letter-spacing: 0.1rem;
   border-radius: 2.5rem;
+`;
+
+export const MyInfo = styled.div`
+  position: relative;
+`;
+
+export const MyList = styled.ul`
+  position: absolute;
+  top: 7rem;
+  right: 0;
+  width: 18rem;
+  background: #222;
+  li * {
+    display: block;
+    padding: 1rem 1.5rem;
+    line-height: 1.5;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: ${(p) => p.theme.text};
+  }
 `;
 
 export const HeaderProfile = styled.div`
@@ -125,4 +147,17 @@ export const MainContentItem = styled(motion.div)`
       font-size: 1.6rem;
     }
   }
+`;
+
+export const HeaderLoginButton = styled(motion.button)`
+  width: 10rem;
+  height: 4rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: ${(p) => p.theme.text};
+  border: 0.2rem solid ${(p) => p.theme.text};
+  font-weight: ${(p) => p.theme.fontWeight.bold};
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  border-radius: 2.5rem;
 `;
