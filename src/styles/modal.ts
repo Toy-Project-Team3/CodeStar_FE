@@ -27,7 +27,7 @@ export const modalForm = styled.div`
   transform: translate(-50%, -50%);
   width: 68rem;
   height: 55rem;
-  background: #fff;
+  background: ${(p) => p.theme.text};
   .close {
     position: absolute;
     top: 2rem;
@@ -51,7 +51,7 @@ export const modalLeft = styled.div`
   text-align: center;
   font-size: 2.4rem;
   font-weight: 700;
-  background: ${(p) => p.theme.text};
+  background: #e3e3ed;
   img {
     width: 100%;
     height: auto;
