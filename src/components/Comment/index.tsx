@@ -7,12 +7,12 @@ function Index() {
     <S.CommentContainer>
       <S.WriterContainer>
         <div className="profile">
-          <Link href="javascript:void(0)">
+          <Link href="#">
             <img src="https://picsum.photos/200/300" />
           </Link>
           <div className="comment-info">
             <div className="username">
-              <Link href="javascript:void(0)">사용자</Link>
+              <Link href="#">사용자</Link>
             </div>
             <div className="date">5일 전</div>
           </div>
