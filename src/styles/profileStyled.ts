@@ -88,9 +88,9 @@ export const ProfileHeader = styled.div`
   }
 `;
 
-export const ProfileCreditScore = styled.div<{ score: number }>`
-  width: 20rem;
-  height: 20rem;
+export const ProfileCreditScore = styled.div<{ score: number; width: number; height: number }>`
+  width: ${(p) => p.width}rem;
+  height: ${(p) => p.height}rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,13 +120,11 @@ export const ProfileCreditScore = styled.div<{ score: number }>`
 export const ProfileActivity = styled.div`
   width: 100%;
   min-height: 10rem;
-
   .activity__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-
     h1 {
       font-size: 3rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};
@@ -163,11 +161,81 @@ export const ProfileActivity = styled.div`
 
   .activity__body {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     gap: 2rem;
     font-size: 2rem;
+    .activity__body__item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      &.active {
+        span {
+          color: ${(p) => p.theme.primary};
+        }
+      }
+      span {
+        font-size: 2.4rem;
+        font-weight: ${(p) => p.theme.fontWeight.bold};
+      }
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  a {
+    color: ${(p) => p.theme.text};
+    text-decoration: none;
   }
 `;
 
-export const ProfileBody = styled.div``;
+export const ProfileBody = styled.div`
+  width: 100%;
+  height: fit-content;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  h1 {
+    font-size: 3rem;
+  }
+  .none-content {
+    width: 100%;
+    height: 100%;
+    font-weight: ${(p) => p.theme.fontWeight.bold};
+    font-size: 3rem;
+    line-height: 1.3;
+    text-align: center;
+  }
+`;
+
+export const ProfileBodyPostItem = styled.div`
+  width: 80%;
+  height: 20rem;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  flex-direction: column;
+  border: 0.1rem solid #848484;
+  border-radius: 1rem;
+
+  .post__img {
+    height: 100%;
+    background-color: ${(p) => p.theme.text};
+  }
+  .post__content {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+    h1 {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+  }
+`;

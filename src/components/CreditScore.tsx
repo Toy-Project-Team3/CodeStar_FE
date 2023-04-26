@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from '@/styles/profileStyled';
 import { motion } from 'framer-motion';
+import { CreditScoreProp } from '@/types/componentProps';
 
 const variants = {
   waterInitial: {
@@ -9,14 +10,15 @@ const variants = {
   waterAnimate: (custom: number) => ({
     y: custom + '%',
     transition: {
-      duration: 2,
+      duration: 1.2,
+      type: 'spring',
     },
   }),
 };
 
-function CreditScore() {
+function CreditScore({ width = 20, height = 20 }: CreditScoreProp) {
   return (
-    <S.ProfileCreditScore score={50}>
+    <S.ProfileCreditScore width={width} height={height} score={100}>
       <motion.div
         custom={50}
         variants={variants}
