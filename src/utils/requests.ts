@@ -6,6 +6,15 @@ export const getPosts = async () => {
   return res.data;
 };
 
+export const getPost = async (userId: String, postId: String) => {
+  const res = await instance.get<PostInterface>(`posts/${userId}/${postId}`);
+  return res.data;
+};
+
+export const getblogPosts = async (userId: string) => {
+  const res = await instance.get<PostInterface[]>(`posts/${userId}`);
+  return res.data;
+};
 export const createPost = async (post) => {
   const response = await instance.post('posts', post);
   return response.data;
