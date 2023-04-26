@@ -88,9 +88,9 @@ export const ProfileHeader = styled.div`
   }
 `;
 
-export const ProfileCreditScore = styled.div<{ score: number }>`
-  width: 20rem;
-  height: 20rem;
+export const ProfileCreditScore = styled.div<{ score: number; width: number; height: number }>`
+  width: ${(p) => p.width}rem;
+  height: ${(p) => p.height}rem;
   display: flex;
   justify-content: center;
   align-items: center;

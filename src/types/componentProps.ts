@@ -9,3 +9,8 @@ export interface ProfileLayoutProp {
   children: React.ReactNode;
   hasHeader: boolean;
 }
+
+export interface CreditScoreProp {
+  width?: number;
+  height?: number;
+}

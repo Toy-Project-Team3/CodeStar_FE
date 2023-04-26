@@ -77,24 +77,23 @@ export const MainContent = styled.div`
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
   width: 90%;
-  height: 30rem;
+  height: 35rem;
   border: 1px solid ${(p) => p.theme.text};
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
   gap: 2rem;
   .thumbnail {
     width: 100%;
-    height: 10rem;
+    height: 50%;
     background-color: ${(p) => p.theme.text};
-    border-radius: 1rem;
   }
   .content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 0 1rem;
     .title {
       font-size: 2.5rem;
       font-weight: ${(p) => p.theme.fontWeight.bold};
