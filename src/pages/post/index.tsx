@@ -5,6 +5,9 @@ import IconDislike from '@/components/IconDislike';
 import Comment from '@/components/Comment';
 import CreditScore from '@/components/CreditScore';
 import IconLike from '@/components/IconLike';
+import { useQuery } from 'react-query';
+import { getPosts } from '@/utils/requests';
+import { useRouter } from 'next/router';
 
 function Index() {
   const [scrollYValue, setScrollYValue] = React.useState(false);
@@ -13,13 +16,17 @@ function Index() {
       window.scrollY > 290 ? setScrollYValue(true) : setScrollYValue(false);
     });
   });
+  const router = useRouter();
+  const { data } = useQuery('posts', getPosts);
+  const post = data?.find((item) => item.postId === router.query.id);
+  console.log(post);
 
   return (
     <Layout hasHeader>
       <S.MainContainer>
         <S.TitleContainer>
           <div className="title-wrapper">
-            <h1>Title</h1>
+            <h1>{post?.title}</h1>
           </div>
           {/* ButtonContainer 자신의 게시글에서만 표시 */}
           <S.ButtonContainer>
@@ -30,7 +37,7 @@ function Index() {
           <S.InformContainer>
             <div>
               <span className="username">
-                <a href="#">작성자</a>
+                <a href="#">{post?.author.userName}</a>
               </span>
               <span className="separator">·</span>
               <span>작성일</span>
@@ -42,7 +49,7 @@ function Index() {
                 <div className="sticky--icon">
                   <IconLike />
                 </div>
-                <div className="count">20</div>
+                <div className="count">{post?.likes.length}</div>
                 <div className="sticky--icon">
                   <IconDislike />
                 </div>
@@ -56,7 +63,8 @@ function Index() {
       <S.ContentContainer>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum asperiores minus, necessitatibus similique, quos
         et molestiae, deleniti maiores sed libero recusandae veniam quae dolor accusantium ex expedita officiis velit
-        voluptatem
+        voluptatem, post:
+        {post?.content}
       </S.ContentContainer>
       <S.WriterContainer>
         <S.WriterWrapper>
@@ -65,7 +73,7 @@ function Index() {
           </a>
           <div className="writerInfo">
             <div className="name">
-              <a href="#">작성자</a>
+              <a href="#">{post?.author.userName}</a>
             </div>
             <div className="description">소개</div>
           </div>
