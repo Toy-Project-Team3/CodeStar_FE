@@ -20,9 +20,7 @@ function Index() {
     });
   });
   const query = useRouter().query;
-  console.log(query);
   const { data: post } = useQuery('post', () => getPost(query.userId, query.postId));
-  console.log(post);
 
   return (
     <Layout hasHeader>

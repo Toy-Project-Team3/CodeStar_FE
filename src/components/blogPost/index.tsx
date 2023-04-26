@@ -6,7 +6,6 @@ import { PostInterface } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 
 function Index({ blogPost }: { blogPost: PostInterface }) {
-  console.log(blogPost);
   return (
     <S.MainContainer>
       <Link
