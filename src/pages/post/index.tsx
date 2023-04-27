@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout/BaseLayout';
 import React from 'react';
 import * as S from '@/styles/postStyled';
-import IconDislike from '@/components/IconDislike';
+import IconDislike from '@/asset/img/IconDislike';
 import Comment from '@/components/Comment';
 import CreditScore from '@/components/CreditScore';
 import IconLike from '@/asset/img/IconLike';
