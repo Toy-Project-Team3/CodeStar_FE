@@ -84,7 +84,7 @@ export const StickyContainer = styled.div`
   left: -10rem;
 `;
 
-export const StickyWrapper = styled.div`
+export const StickyWrapper = styled.div<{ scrollY: Boolean; like: Boolean; dislike: Boolean }>`
   width: 6rem;
   background-color: #1e1e1e;
   border: 1px solid #2a2a2a;
@@ -108,6 +108,10 @@ export const StickyWrapper = styled.div`
     color: #acacac;
     cursor: pointer;
     padding-top: 0.2rem;
+    :hover {
+      color: #ececec;
+      border-color: #ececec;
+    }
   }
 
   .count {
