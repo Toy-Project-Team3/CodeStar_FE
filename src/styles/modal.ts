@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const modalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -18,7 +17,6 @@ export const modalWrapper = styled.div`
     background: rgba(0, 0, 0, 0.3);
   }
 `;
-
 export const modalForm = styled.div`
   display: flex;
   position: absolute;
@@ -36,12 +34,11 @@ export const modalForm = styled.div`
     height: 2.5rem;
     cursor: pointer;
   }
-  .content {
+  .contents {
     display: flex;
     width: 100%;
   }
 `;
-
 export const modalLeft = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,7 +49,8 @@ export const modalLeft = styled.div`
   font-size: 2.4rem;
   font-weight: 700;
   background: #e3e3ed;
-  img {
+  img,
+  svg {
     width: 100%;
     height: auto;
     margin-bottom: 2rem;
@@ -65,13 +63,11 @@ export const modalRight = styled.div`
   flex: 1 1 0%;
   flex-direction: column;
   justify-content: space-between;
-
   h3 {
     font-size: 2.4rem;
     font-weight: 700;
     margin-bottom: 3rem;
   }
-
   .form_id {
     position: relative;
     span {
@@ -85,7 +81,6 @@ export const modalRight = styled.div`
       cursor: pointer;
     }
   }
-
   input {
     width: 100%;
     height: 4.8rem;
@@ -94,7 +89,6 @@ export const modalRight = styled.div`
     border: 0.1rem solid ${(p) => p.theme.loading};
     margin-bottom: 1rem;
   }
-
   button {
     width: 10rem;
     line-height: 4rem;
@@ -104,7 +98,6 @@ export const modalRight = styled.div`
     color: ${(p) => p.theme.text};
     cursor: pointer;
   }
-
   p {
     font-size: 1.2rem;
     text-align: right;
@@ -114,7 +107,6 @@ export const modalRight = styled.div`
       cursor: pointer;
     }
   }
-
   .error {
     color: ${(p) => p.theme.danger};
     margin-bottom: 1rem;

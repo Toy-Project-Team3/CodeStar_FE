@@ -20,7 +20,6 @@ export const createPost = async (post) => {
   const response = await instance.post('posts', post);
   return response.data;
 };
-
 export const postLikeDislike = async (userId: String, postId: String) => {
   const response = await instance.post(`posts/${userId}/${postId}/like`);
   return response.data;
