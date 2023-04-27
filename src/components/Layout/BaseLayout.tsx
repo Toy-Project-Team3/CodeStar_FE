@@ -13,10 +13,15 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [subnavOpen, setSubnavOpen] = useState<boolean>(false);
   const subnavRef = useRef<HTMLUListElement>(null);
+  const headerProfileRef = useRef(null);
 
   const handleOutsideClick = (event: MouseEvent) => {
-    if (!subnavRef.current) return;
-    if (subnavRef.current && !subnavRef.current.contains(event.target as Node)) {
+    if (!subnavRef.current || !headerProfileRef.current) return;
+
+    const isClickedSubnav = subnavRef.current.contains(event.target as Node);
+    const isClickedHeaderProfile = event.target === headerProfileRef.current;
+
+    if (!isClickedSubnav && !isClickedHeaderProfile) {
       setSubnavOpen(false);
     }
   };
@@ -67,7 +72,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                   글쓰기
                 </S.HeaderWriteButton>
                 <S.MyInfo>
-                  <S.HeaderProfile onClick={() => setSubnavOpen((prevState) => !prevState)} />
+                  <S.HeaderProfile ref={headerProfileRef} onClick={() => setSubnavOpen((prevState) => !prevState)} />
                   {subnavOpen && (
                     <S.MyList ref={subnavRef}>
                       <li>
