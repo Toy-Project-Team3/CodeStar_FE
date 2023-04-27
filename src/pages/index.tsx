@@ -40,7 +40,10 @@ export default function Home() {
                     y: -3,
                   }}
                 >
-                  <Link href={{ pathname: `/posts/${item.author?.userID}`, query: { id: item.postId } }}>
+                  <Link
+                    href={{ pathname: `/post`, query: { postId: item.postId, userId: item.author.id } }}
+                    as={'@' + item.author.userId + '/' + item.postId}
+                  >
                     <div className="thumbnailContainer">
                       {item.thumbnail ? (
                         <img className="thumbnail" src={item.thumbnail} alt={item.title + 'Img'} />
@@ -50,7 +53,10 @@ export default function Home() {
                     </div>
                   </Link>
                   <div className="itemBody">
-                    <Link href={{ pathname: `/posts/${item.author?.userID}`, query: { id: item.postId } }}>
+                    <Link
+                      href={{ pathname: `/post`, query: { postId: item.postId, userId: item.author.id } }}
+                      as={'@' + item.author.userId + '/' + item.postId}
+                    >
                       <div className="itemPost">
                         <h4 className="postTitle">{item.title}</h4>
                         <p className="postContent">{item.content}</p>

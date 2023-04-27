@@ -76,7 +76,7 @@ function Index() {
       <S.WriterContainer>
         <S.WriterWrapper>
           <Link
-            href={{ pathname: `/blog`, query: { usedId: post?.author.userId, userName: post?.author.userName } }}
+            href={{ pathname: `/blog`, query: { id: post?.author.id, userName: post?.author.userName } }}
             as={'@' + post?.author.userId}
           >
             <img src={post?.author.profileImg} alt="profile" />
@@ -84,7 +84,7 @@ function Index() {
           <div className="writerInfo">
             <div className="name">
               <Link
-                href={{ pathname: `/blog`, query: { usedId: post?.author.userId, userName: post?.author.userName } }}
+                href={{ pathname: `/blog`, query: { id: post?.author.id, userName: post?.author.userName } }}
                 as={'@' + post?.author.userId}
               >
                 {post?.author.userName}
