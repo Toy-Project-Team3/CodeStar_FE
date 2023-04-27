@@ -13,7 +13,7 @@ function Index({ searchPost }: { searchPost: PostInterface }) {
           href={{ pathname: `/blog`, query: { id: searchPost?.author.id, userName: searchPost?.author.userName } }}
           as={'@' + searchPost?.author.userId}
         >
-          <img src={searchPost.author.profileImg} alt="profile" />
+          {searchPost.author.profileImg && <img src={searchPost.author.profileImg} alt="profile" />}
         </Link>
         <div className="username">
           <Link

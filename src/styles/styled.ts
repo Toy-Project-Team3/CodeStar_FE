@@ -88,6 +88,7 @@ export const HeaderProfile = styled.div`
 `;
 
 export const MainContent = styled.div`
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   display: grid;
@@ -95,9 +96,9 @@ export const MainContent = styled.div`
   place-items: center;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  padding: 10rem 5rem;
   gap: 3rem;
-  padding: 0 10rem;
+  /* padding: 0 10rem; */
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -111,7 +112,8 @@ export const MainContent = styled.div`
 
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
-  width: 32rem;
+  box-sizing: border-box;
+  width: 28rem;
   height: 35rem;
   border: none;
   border-radius: 0.4rem;
@@ -136,7 +138,7 @@ export const MainContentItem = styled(motion.div)`
     display: grid;
     grid-template-rows: 3fr 1fr;
     .itemPost {
-      padding: 1.6rem 1rem;
+      padding: 1.6rem 2rem 0.5rem;
       line-height: 1.5;
       color: ${(p) => p.theme.text};
       .postTitle {
@@ -144,14 +146,19 @@ export const MainContentItem = styled(motion.div)`
         font-weight: ${(p) => p.theme.fontWeight.bold};
         height: 2.4rem;
         overflow: hidden;
+        text-overflow: ellipsis;
         max-lines: 1;
+        word-break: break-all;
       }
       .postContent {
+        margin: 0.2rem 0 0.4rem;
         font-size: 1.4rem;
         font-weight: ${(p) => p.theme.fontWeight.normal};
         height: 6.3rem;
         overflow: hidden;
+        text-overflow: ellipsis;
         max-lines: 3;
+        word-break: break-all;
       }
       .subInfo {
         display: flex;

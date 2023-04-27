@@ -1,6 +1,6 @@
-import { instance } from '@/utils/axiosInstance';
+import axios from 'axios';
+import { instance, imgInstance } from '@/utils/axiosInstance';
 import { PostInterface } from '@/types/RequestInterface';
-
 export const getPosts = async () => {
   const res = await instance.get<PostInterface[]>(`posts`);
   return res.data;
@@ -17,7 +17,7 @@ export const getblogPosts = async (userId: string) => {
 };
 
 export const createPost = async (post) => {
-  const response = await instance.post('posts', post);
+  const response = await imgInstance.post('posts', post);
   return response.data;
 };
 export const postLikeDislike = async (userId: String, postId: String) => {

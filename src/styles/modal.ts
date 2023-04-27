@@ -112,3 +112,4 @@ export const modalRight = styled.div`
     margin-bottom: 1rem;
   }
 `;
+``;

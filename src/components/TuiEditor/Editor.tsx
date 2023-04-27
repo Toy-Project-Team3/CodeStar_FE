@@ -10,9 +10,12 @@ const ToastEditor = forwardRef((props, ref) => {
   const viewWidth = props.viewWidth;
   const editorRef = useRef({});
 
+  //글 수정 할 때 기존 데이터 불러오기
   useEffect(() => {
     editorRef.current.getInstance().insertText(oldContent);
   }, []);
+
+  //에디터 너비값에 따라 마크다운/위지윅 변환
   useEffect(() => {
     if (viewWidth < 800) {
       editorRef.current.getInstance().changeMode('wysiwyg');
@@ -21,6 +24,13 @@ const ToastEditor = forwardRef((props, ref) => {
     }
   }, [viewWidth]);
 
+  // base64 문자열 bufferArray 형태로 변환
+
+  // const base64stringArr = content.match(^data:image\/[a-z]+;base64,([A-Za-z0-9+/=])+$)
+
+  // bufferArray 를 base64로 변환
+
+  //에디터 내의 데이터 변수 content 에 담기
   const liftEditorContent = function () {
     console.log(editorRef.current.getInstance().getMarkdown());
     console.log(editorRef.current.getInstance().getHTML());
