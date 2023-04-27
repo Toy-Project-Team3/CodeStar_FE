@@ -34,3 +34,13 @@ export const MainContainer = styled.div`
     }
   }
 `;
+
+export const NoticeParagraph = styled.p`
+  margin: 3rem 0;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  color: #d9d9d9;
+  b {
+    color: #ececec;
+  }
+`;
