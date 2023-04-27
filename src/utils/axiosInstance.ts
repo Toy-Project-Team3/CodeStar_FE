@@ -1,4 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosError } from 'axios';
+import { getCookie } from '../utils/cookies';
+import { error } from 'console';
 
 const createInstance = () => {
   const instance = axios.create({
@@ -12,6 +14,18 @@ const createInstance = () => {
     },
     withCredentials: true,
   });
+
+  instance.interceptors.request.use(
+    (request) => {
+      const token = getCookie();
+      if (token) request.headers['Authorization'] = `Bearer ${token}`;
+      return request;
+    },
+    (error: AxiosError) => {
+      console.log(error);
+      return Promise.reject(error);
+    },
+  );
 
   return instance;
 };

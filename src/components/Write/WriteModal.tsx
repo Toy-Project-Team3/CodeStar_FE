@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import EmptyThumbnail from '@/asset/img/IconEmptyThumbnail';
+import EmptyThumbnail from '../EmptyThumbnail';
 import * as S from '@/styles/writeModalStyled';
 import * as B from '@/styles/buttonStyled';
 import { File } from 'buffer';
@@ -29,20 +29,22 @@ const WriteModal: React.FC<Props> = (props: WriteModalProps) => {
     formData.append(key, post[key]);
   }
 
+  console.log('formData:', formData);
+  console.log('post:', post);
   const uploadThumbnail = async (e) => {
     const file: File = e.target.files[0];
     const url = URL.createObjectURL(file);
     // console.log(url);
     // console.log(typeof url);
+    console.log('file:', file);
+    console.log('url:', url);
     setThumbnail(file);
     setThumbnailSrc(url);
   };
-  const clickPostBtn = async () => {
+  const clickPostBtn = () => {
     if (title) {
       const post: Post = { title: title, content: content, thumbnail: thumbnail, isPrivate: isPrivate };
-      console.log(post);
-      console.log(formData);
-      await setPost(post);
+      setPost(post);
       postPost(formData);
       // putEditPost({ title, content, thumbnail, isPrivate });
     } else {
@@ -52,9 +54,9 @@ const WriteModal: React.FC<Props> = (props: WriteModalProps) => {
   const addClassName = () => {
     setIsActive(!isActive);
   };
-  // useEffect(() => {
-  //   setIsPrivate(false);
-  // }, []);
+  useEffect(() => {
+    setIsPrivate(false);
+  }, []);
   return (
     <>
       <S.Background>
@@ -103,7 +105,7 @@ const WriteModal: React.FC<Props> = (props: WriteModalProps) => {
             <div className="buttons">
               <B.DarkLightBtn
                 onClick={() => {
-                  setIsPrivate(isPrivate);
+                  setIsPrivate(false);
                   addClassName();
                 }}
                 className={isActive && 'active'}
@@ -112,7 +114,7 @@ const WriteModal: React.FC<Props> = (props: WriteModalProps) => {
               </B.DarkLightBtn>
               <B.DarkLightBtn
                 onClick={() => {
-                  setIsPrivate(!isPrivate);
+                  setIsPrivate(true);
                   addClassName();
                 }}
                 className={!isActive && 'active'}

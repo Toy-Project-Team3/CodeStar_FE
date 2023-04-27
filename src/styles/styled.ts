@@ -15,7 +15,7 @@ export const Header = styled.div`
   width: 100%;
   height: 8rem;
   display: flex;
-  padding: 2rem 10rem;
+  padding: 0 10rem;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -23,12 +23,13 @@ export const Header = styled.div`
     cursor: pointer;
     svg {
       width: 15rem;
-      height: 10rem;
+      height: 4em;
     }
   }
   div {
     display: flex;
-    gap: 4rem;
+    align-items: center;
+    gap: 3rem;
   }
 `;
 
@@ -47,16 +48,36 @@ export const HeaderSearchButton = styled.button`
 `;
 
 export const HeaderWriteButton = styled(motion.button)`
-  width: 14rem;
-  height: 100%;
+  width: 10rem;
+  height: 4rem;
   cursor: pointer;
   background-color: transparent;
   color: ${(p) => p.theme.text};
   border: 0.2rem solid ${(p) => p.theme.text};
   font-weight: ${(p) => p.theme.fontWeight.bold};
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   letter-spacing: 0.1rem;
   border-radius: 2.5rem;
+`;
+
+export const MyInfo = styled.div`
+  position: relative;
+`;
+
+export const MyList = styled.ul`
+  position: absolute;
+  top: 7rem;
+  right: 0;
+  width: 18rem;
+  background: #222;
+  li * {
+    display: block;
+    padding: 1rem 1.5rem;
+    line-height: 1.5;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: ${(p) => p.theme.text};
+  }
 `;
 
 export const HeaderProfile = styled.div`
@@ -70,16 +91,16 @@ export const HeaderProfile = styled.div`
 export const MainContent = styled.div`
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-  align-items: center;
+  display: flex;
+  /* grid-template-columns: repeat(4, 1fr);
+  place-items: center; */
+  justify-content: flex-start;
   flex-wrap: wrap;
   align-items: center;
   margin-top: 8.4rem;
   gap: 3rem;
   padding: 0 10rem;
-  @media (max-width: 1200px) {
+  /* @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 900px) {
@@ -87,32 +108,29 @@ export const MainContent = styled.div`
   }
   @media (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
-  }
+  } */
 `;
 
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
-  width: 32rem;
+  width: 25rem;
   height: 35rem;
-  border: none;
+  border: 1px solid ${(p) => p.theme.text};
   border-radius: 0.4rem;
-  background-color: ${(p) => p.theme.color.dark2};
   cursor: pointer;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 2fr 3fr;
-  .thumbnailContainer {
-    height: 17rem;
-    .thumbnail {
+  display: flex;
+  flex-direction: column;
+  .thumbnail {
+    width: 100%;
+    height: 20rem;
+    background-color: ${(p) => p.theme.text};
+    a {
+      display: block;
       width: 100%;
       height: 100%;
-    }
-    .emptyThumbnail {
-      width: 100%;
-      height: 100%;
-      background-color: ${(p) => p.theme.color.lightDark};
     }
   }
+
   .itemBody {
     display: grid;
     grid-template-rows: 3fr 1fr;
@@ -139,45 +157,25 @@ export const MainContentItem = styled(motion.div)`
         color: ${(p) => p.theme.color.light};
       }
     }
-    .itemUser {
-      display: grid;
-      align-items: center;
-      grid-template-columns: 1fr 4fr 1fr;
-      height: 100%;
-      padding: 1rem 1.6rem;
-      border-top: 1px solid ${(p) => p.theme.color.light};
-      opacity: 0.8;
-      font-size: 1.2rem;
-      color: ${(p) => p.theme.text};
-      .userProfileImg {
-        display: flex;
-        justify-content: center;
-        img {
-          width: 2.4rem;
-          height: 2.4rem;
-          border-radius: 50%;
-        }
-      }
-      .userName {
-        display: flex;
-        gap: 0.7rem;
-        span {
-          color: ${(p) => p.theme.color.light};
-          opacity: 0.8;
-        }
-        p {
-          font-weight: ${(p) => p.theme.fontWeight.bold};
-        }
-      }
-      .postLikes {
-        height: 1.2rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        svg {
-          width: 1.2rem;
-        }
-      }
+    .title {
+      font-size: 2.5rem;
+      font-weight: ${(p) => p.theme.fontWeight.bold};
+    }
+    .description {
+      font-size: 1.6rem;
     }
   }
+`;
+
+export const HeaderLoginButton = styled(motion.button)`
+  width: 10rem;
+  height: 4rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: ${(p) => p.theme.text};
+  border: 0.2rem solid ${(p) => p.theme.text};
+  font-weight: ${(p) => p.theme.fontWeight.bold};
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  border-radius: 2.5rem;
 `;
