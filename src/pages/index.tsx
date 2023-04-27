@@ -10,7 +10,6 @@ import { getPosts } from '@/utils/requests';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
-  console.log(data);
 
   return (
     <>

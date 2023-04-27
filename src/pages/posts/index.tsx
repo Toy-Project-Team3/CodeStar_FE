@@ -8,13 +8,15 @@ import * as B from '@/styles/buttonStyled';
 import dynamic from 'next/dynamic';
 import { useMutation, useQueryClient } from 'react-query';
 import { createPost } from '@/utils/requests';
-import { QueryClient } from 'react-query';
+import { getPost } from '@/utils/requests';
+
 const Editor = dynamic(() => import('@/components/TuiEditor/Editor'), { ssr: false });
 const WriteModal = dynamic(() => import('@/components/Write/WriteModal'), { ssr: false });
 
 const WritePage = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const query = router.query;
   const [vw, setVw] = useState<number>(800);
   const [title, setTitle] = useState<string>('');
   const titleRef = useRef<HTMLInputElement>(null);
@@ -27,17 +29,22 @@ const WritePage = () => {
       queryClient.invalidateQueries('posts');
     },
   });
+  const queryUserId = query.userId;
+  const queryPostId = query.postId;
+  async () => {
+    const oldContents = await getPost(queryUserId, queryPostId);
+    console.log(oldContents);
+  };
 
-  // useEffect(() => {
-  //   const getPost = async (writtenTitle: string) => {
-  //     const response = await instance.get(`/posts/${writtenTitle}`);
-  //     console.log(response);
-  //     setTitle(response.data.title);
-  //     setContent(response.data.content);
-  //   };
-  //   router.asPath === '/posts' ? null : getPost(router.asPath.slice(7));
-  // }, []);
-
+  const oldTitle = query.title;
+  const oldContent = query.content;
+  const setOldContents = () => {
+    setContent(oldContent);
+    titleRef.current.value = oldTitle;
+  };
+  useEffect(() => {
+    query === {} ? null : setOldContents();
+  }, []);
   useEffect(() => {
     const getWindowWidth = () => {
       setVw(window.innerWidth);

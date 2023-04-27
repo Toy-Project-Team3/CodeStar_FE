@@ -8,6 +8,7 @@ export const getPosts = async () => {
 
 export const getPost = async (userId: String, postId: String) => {
   const res = await instance.get<PostInterface>(`posts/${userId}/${postId}`);
+
   return res.data;
 };
 

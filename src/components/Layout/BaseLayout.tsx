@@ -7,7 +7,7 @@ import { BaseLayoutProp } from '@/types/componentProps';
 import IconSearch from '../../asset/img/IconSearch';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
 
   return (
     <S.MainWrapper>

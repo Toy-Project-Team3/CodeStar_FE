@@ -22,7 +22,9 @@ function LoginForm({ setLogin, setModalOpen }: LoginFormProps) {
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      const response = await instance.post('/auth/login', data);
+      const response = await instance.post('/auth/login', data, {
+        headers: { 'Content-Type': 'application/json' },
+      });
       setModalOpen(false);
       console.log(response.data);
     } catch (error) {
