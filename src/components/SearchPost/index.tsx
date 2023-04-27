@@ -9,19 +9,37 @@ function Index({ searchPost }: { searchPost: PostInterface }) {
   return (
     <S.MainContaier>
       <S.UserContainer>
-        <Link href="#">
-          <img src="https://picsum.photos/200/300" alt="profile" />
+        <Link
+          href={{ pathname: `/blog`, query: { id: searchPost?.author.id, userName: searchPost?.author.userName } }}
+          as={'@' + searchPost?.author.userId}
+        >
+          <img src={searchPost.author.profileImg} alt="profile" />
         </Link>
-        <div className="username">{searchPost.author.userName}</div>
-      </S.UserContainer>
-      <S.ThumbnailLink href="#">
-        <div className="thumbnail">
-          <img src="https://picsum.photos/700/400" alt="thumbnail" />
+        <div className="username">
+          <Link
+            href={{ pathname: `/blog`, query: { id: searchPost?.author.id, userName: searchPost?.author.userName } }}
+            as={'@' + searchPost?.author.userId}
+          >
+            {searchPost.author.userName}
+          </Link>
         </div>
-      </S.ThumbnailLink>
-      <S.TitleLink href="#">
-        <h2>{searchPost.title}</h2>
-      </S.TitleLink>
+      </S.UserContainer>
+      <Link
+        href={{ pathname: `/post`, query: { postId: searchPost.postId, userId: searchPost.author.id } }}
+        as={'@' + searchPost.author.userId + '/' + searchPost.postId}
+      >
+        <S.ThumbnailLink>
+          <img src={searchPost.thumbnail} alt="thumbnail" />
+        </S.ThumbnailLink>
+      </Link>
+      <Link
+        href={{ pathname: `/post`, query: { postId: searchPost.postId, userId: searchPost.author.id } }}
+        as={'@' + searchPost.author.userId + '/' + searchPost.postId}
+      >
+        <S.TitleLink>
+          <h2>{searchPost.title}</h2>
+        </S.TitleLink>
+      </Link>
       <S.ContentContianer>
         <p>{searchPost.content}</p>
       </S.ContentContianer>
