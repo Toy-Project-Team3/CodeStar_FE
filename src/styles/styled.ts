@@ -11,7 +11,7 @@ export const MainWrapper = styled.div`
 
 export const Header = styled.div`
   z-index: 1;
-  background: ${(p) => p.theme.background.dark};
+  background: ${(p) => p.theme.background.main};
   width: 100%;
   height: 8rem;
   display: flex;
@@ -69,16 +69,16 @@ export const HeaderProfile = styled.div`
 export const MainContent = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  /* grid-template-columns: repeat(4, 1fr);
-  place-items: center; */
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  align-items: center;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 8.4rem;
   gap: 3rem;
   padding: 0 10rem;
-  /* @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 900px) {
@@ -86,43 +86,97 @@ export const MainContent = styled.div`
   }
   @media (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
-  } */
+  }
 `;
 
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
-  width: 25rem;
+  width: 32rem;
   height: 35rem;
-  border: 1px solid ${(p) => p.theme.text};
+  border: none;
   border-radius: 0.4rem;
+  background-color: ${(p) => p.theme.color.dark2};
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  .thumbnail {
-    width: 100%;
-    height: 20rem;
-    background-color: ${(p) => p.theme.text};
-    a {
-      display: block;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 2fr 3fr;
+  .thumbnailContainer {
+    height: 17rem;
+    .thumbnail {
       width: 100%;
       height: 100%;
     }
+    .emptyThumbnail {
+      width: 100%;
+      height: 100%;
+      background-color: ${(p) => p.theme.color.lightDark};
+    }
   }
-  .content {
-    a {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 0 1rem;
+  .itemBody {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    .itemPost {
+      padding: 1.6rem 1rem;
+      line-height: 1.5;
+      color: ${(p) => p.theme.text};
+      .postTitle {
+        font-size: 1.6rem;
+        font-weight: ${(p) => p.theme.fontWeight.bold};
+        height: 2.4rem;
+        max-lines: 1;
+      }
+      .postContent {
+        font-size: 1.4rem;
+        font-weight: ${(p) => p.theme.fontWeight.normal};
+        height: 6.3rem;
+        max-lines: 3;
+      }
+      .subInfo {
+        display: flex;
+        gap: 1rem;
+        font-size: 1.2rem;
+        color: ${(p) => p.theme.color.light};
+      }
     }
-    .title {
-      font-size: 2.5rem;
-      font-weight: ${(p) => p.theme.fontWeight.bold};
-    }
-    .description {
-      font-size: 1.6rem;
+    .itemUser {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr 4fr 1fr;
+      height: 100%;
+      padding: 1rem 1.6rem;
+      border-top: 1px solid ${(p) => p.theme.color.light};
+      opacity: 0.8;
+      font-size: 1.2rem;
+      color: ${(p) => p.theme.text};
+      .userProfileImg {
+        display: flex;
+        justify-content: center;
+        img {
+          width: 2.4rem;
+          height: 2.4rem;
+          border-radius: 50%;
+        }
+      }
+      .userName {
+        display: flex;
+        gap: 0.7rem;
+        span {
+          color: ${(p) => p.theme.color.light};
+          opacity: 0.8;
+        }
+        p {
+          font-weight: ${(p) => p.theme.fontWeight.bold};
+        }
+      }
+      .postLikes {
+        height: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        svg {
+          width: 1.2rem;
+        }
+      }
     }
   }
 `;
