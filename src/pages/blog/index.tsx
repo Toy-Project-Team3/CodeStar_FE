@@ -2,7 +2,7 @@ import BaseLayout from '@/components/Layout/BaseLayout';
 import React from 'react';
 import * as S from '@/styles/blogStyled';
 import Link from 'next/link';
-import IconSearch from '@/components/IconSearch';
+import IconSearch from '@/asset/img/IconSearch';
 import BlogPost from '@/components/blogPost';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
