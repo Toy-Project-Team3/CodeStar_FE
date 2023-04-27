@@ -2,12 +2,12 @@ import axios, { AxiosRequestConfig, AxiosError } from 'axios';
 import { getCookie } from '@/utils/cookies';
 import { error } from 'console';
 
-const createInstance = () => {
+const createInstance = (ContentType: string) => {
   const instance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     timeout: 3000,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': ContentType,
     },
     withCredentials: true,
   });
@@ -26,4 +26,5 @@ const createInstance = () => {
 
   return instance;
 };
-export const instance = createInstance();
+export const instance = createInstance('application/json');
+export const imgInstance = createInstance('meltipart/form-data');
