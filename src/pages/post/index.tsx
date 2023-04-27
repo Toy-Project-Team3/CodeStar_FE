@@ -56,11 +56,11 @@ function Index() {
                 <div className="sticky--icon">
                   <IconLike />
                 </div>
-                <div className="count">{post?.likes.length}</div>
+                <div className="count">{post?.likes?.length}</div>
                 <div className="sticky--icon">
                   <IconDislike />
                 </div>
-                <div className="count">{post?.dislikes.length}</div>
+                <div className="count">{post?.dislikes?.length}</div>
               </S.StickyWrapper>
             </S.StickyContainer>
           </div>
