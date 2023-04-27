@@ -1,9 +1,9 @@
 import React from 'react';
 
-function IconLike() {
+function IconLike({ color = '#acacac' }) {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
+      <path fill={color} d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path>
     </svg>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function IconDislike() {
+function IconDislike({ color = '#acacac' }) {
   return (
     <svg
-      fill="currentColor"
+      fill={color}
       height="24"
       width="24"
       version="1.1"
