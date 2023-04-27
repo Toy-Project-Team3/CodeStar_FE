@@ -1,15 +1,17 @@
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import Head from 'next/head';
 import * as S from '@/styles/styled';
 import BaseLayout from '@/components/Layout/BaseLayout';
-import React from 'react';
-import Link from 'next/link';
+import IconHeart from '@/asset/img/IconHeart';
 import { useQuery } from 'react-query';
 import { getPosts } from '@/utils/requests';
-import Image from 'next/image';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
   console.log(data);
+
   return (
     <>
       <Head>

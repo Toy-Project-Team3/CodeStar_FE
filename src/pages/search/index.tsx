@@ -7,7 +7,6 @@ import { useQuery } from 'react-query';
 import { getPosts } from '@/utils/requests';
 import { PostInterface } from '@/types/RequestInterface';
 
-
 function Index() {
   const { data } = useQuery('posts', getPosts);
   const [search, setSearch] = React.useState('');
