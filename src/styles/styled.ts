@@ -11,7 +11,7 @@ export const MainWrapper = styled.div`
 
 export const Header = styled.div`
   z-index: 1;
-  background: ${(p) => p.theme.background.dark};
+  background: ${(p) => p.theme.background.main};
   width: 100%;
   height: 8rem;
   display: flex;
@@ -75,7 +75,7 @@ export const MainContent = styled.div`
   align-items: center;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 8.4rem;
   gap: 3rem;
   padding: 0 10rem;
   @media (max-width: 1200px) {
@@ -116,7 +116,7 @@ export const MainContentItem = styled(motion.div)`
     display: grid;
     grid-template-rows: 3fr 1fr;
     .itemPost {
-      padding: 1.6rem;
+      padding: 1.6rem 1rem;
       line-height: 1.5;
       color: ${(p) => p.theme.text};
       .postTitle {
