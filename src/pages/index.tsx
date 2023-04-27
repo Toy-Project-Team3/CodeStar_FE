@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Head from 'next/head';
 import * as S from '@/styles/styled';
 import BaseLayout from '@/components/Layout/BaseLayout';
@@ -10,7 +9,7 @@ import { getPosts } from '@/utils/requests';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -40,10 +39,7 @@ export default function Home() {
                     y: -3,
                   }}
                 >
-                  <Link
-                    href={{ pathname: `/post`, query: { postId: item.postId, userId: item.author.id } }}
-                    as={'@' + item.author.userId + '/' + item.postId}
-                  >
+                  <Link href={{ pathname: `/post/${item.author.id}/${item.postId}` }}>
                     <div className="thumbnailContainer">
                       {item.thumbnail ? (
                         <img className="thumbnail" src={item.thumbnail} alt={item.title + 'Img'} />
@@ -53,10 +49,7 @@ export default function Home() {
                     </div>
                   </Link>
                   <div className="itemBody">
-                    <Link
-                      href={{ pathname: `/post`, query: { postId: item.postId, userId: item.author.id } }}
-                      as={'@' + item.author.userId + '/' + item.postId}
-                    >
+                    <Link href={{ pathname: `/post/${item.author.id}/${item.postId}` }}>
                       <div className="itemPost">
                         <h4 className="postTitle">{item.title}</h4>
                         <p className="postContent">{item.content}</p>
@@ -70,12 +63,7 @@ export default function Home() {
                         </div>
                       </div>
                     </Link>
-                    <Link
-                      href={{
-                        pathname: `/posts/:${item.author?.userID}/${item.postId}`,
-                        query: { id: item.author?.id },
-                      }}
-                    >
+                    <Link href={{ pathname: `/blog/${item.author.id}` }}>
                       <div className="itemUser">
                         <div className="userProfileImg">
                           {item.author?.profileImg ? (

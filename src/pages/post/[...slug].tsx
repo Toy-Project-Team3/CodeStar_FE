@@ -1,39 +1,54 @@
 import Layout from '@/components/Layout/BaseLayout';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import * as S from '@/styles/postStyled';
 import IconDislike from '@/asset/img/IconDislike';
 import Comment from '@/components/Comment';
 import CreditScore from '@/components/CreditScore';
 import IconLike from '@/asset/img/IconLike';
-import { useQuery } from 'react-query';
-import { getPost, getPosts } from '@/utils/requests';
-import { useRouter } from 'next/router';
-import { CommentList } from '@/types/RequestInterface';
+import { getPost } from '@/utils/requests';
+import { CommentList, PostInterface } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 import Link from 'next/link';
+import { GetServerSidePropsContext } from 'next';
+import { useRecoilValue } from 'recoil';
+import userState from '@/utils/atom';
 
-// export async function getServerSideProps() {
-//   const res = await getPost()
-// }
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const query = context.query.slug;
+  if (!query) {
+    return null;
+  }
+  const res = await getPost(query[0], query[1]);
+  return { props: { post: res } };
+}
 
-function Index() {
+function Index({ post }: { post: PostInterface }) {
   const [scrollYValue, setScrollYValue] = React.useState(false);
   const [like, setLike] = React.useState(false);
   const [disLike, setDisLike] = React.useState(false);
+  const [comment, setComment] = React.useState('');
+  const user = useRecoilValue(userState);
+  console.log(user);
 
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 290 ? setScrollYValue(true) : setScrollYValue(false);
     });
   });
-  const query = useRouter().query;
-  const { data: post } = useQuery(['post', query.postId], () => getPost(query.userId, query.postId));
 
   const handleClickLike = () => {
     setLike(!like);
   };
   const handleClickDisLike = () => {
     setDisLike(!disLike);
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  const handlePostComment = () => {
+    console.log(comment);
   };
 
   return (
@@ -43,22 +58,22 @@ function Index() {
           <div className="title-wrapper">
             <h1>{post?.title}</h1>
           </div>
-          {/* ButtonContainer 자신의 게시글에서만 표시 */}
-          <S.ButtonContainer>
-            <Link href={{ pathname: '/posts', query: { id: post?.postId } }} as={`/posts/${post?.postId}`}>
-              <button>수정</button>
-            </Link>
-            <button>삭제</button>
-          </S.ButtonContainer>
+          {user?.id === post?.author.id ? (
+            <>
+              <S.ButtonContainer>
+                <Link href={{ pathname: '/posts', query: { id: post?.postId } }} as={`/posts/${post?.postId}`}>
+                  <button>수정</button>
+                </Link>
+                <button>삭제</button>
+              </S.ButtonContainer>
+            </>
+          ) : (
+            ''
+          )}
           <S.InformContainer>
             <div>
               <span className="username">
-                <Link
-                  href={{ pathname: `/blog`, query: { id: post?.author.id, userName: post?.author.userName } }}
-                  as={'@' + post?.author.userId}
-                >
-                  {post?.author.userName}
-                </Link>
+                <Link href={{ pathname: `/blog/${post.author.id}` }}>{post?.author.userName}</Link>
               </span>
               <span className="separator">·</span>
               <span>{getDate(post?.createdAt)}</span>
@@ -91,20 +106,12 @@ function Index() {
       </S.ContentContainer>
       <S.WriterContainer>
         <S.WriterWrapper>
-          <Link
-            href={{ pathname: `/blog`, query: { id: post?.author.id, userName: post?.author.userName } }}
-            as={'@' + post?.author.userId}
-          >
+          <Link href={{ pathname: `/blog/${post.author.id}` }}>
             <img src={post?.author.profileImg} alt="profile" />
           </Link>
           <div className="writerInfo">
             <div className="name">
-              <Link
-                href={{ pathname: `/blog`, query: { id: post?.author.id, userName: post?.author.userName } }}
-                as={'@' + post?.author.userId}
-              >
-                {post?.author.userName}
-              </Link>
+              <Link href={{ pathname: `/blog/${post.author.id}` }}>{post?.author.userName}</Link>
             </div>
             <div className="description">{post?.author.bio}</div>
           </div>
@@ -118,9 +125,9 @@ function Index() {
         <h4>{post?.commentList.length}개의 댓글</h4>
         <div>
           <S.CommentWrapper>
-            <S.CommentTextArea placeholder="댓글을 작성하세요" />
+            <S.CommentTextArea onChange={handleInputChange} placeholder="댓글을 작성하세요" />
             <S.ButtonWrapper>
-              <button>댓글 작성</button>
+              <button onClick={handlePostComment}>댓글 작성</button>
             </S.ButtonWrapper>
           </S.CommentWrapper>
         </div>

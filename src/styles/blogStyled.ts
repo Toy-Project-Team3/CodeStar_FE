@@ -11,7 +11,7 @@ export const OwnerContainer = styled.div`
   .wrapper {
     display: flex;
     align-items: center;
-    a {
+    div {
       img {
         display: block;
         width: 12.8rem;
