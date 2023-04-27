@@ -1,15 +1,17 @@
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import Head from 'next/head';
 import * as S from '@/styles/styled';
 import BaseLayout from '@/components/Layout/BaseLayout';
-import React from 'react';
-import Link from 'next/link';
+import IconHeart from '@/asset/img/IconHeart';
 import { useQuery } from 'react-query';
 import { getPosts } from '@/utils/requests';
-import Image from 'next/image';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
   console.log(data);
+
   return (
     <>
       <Head>
@@ -38,12 +40,48 @@ export default function Home() {
                     y: -3,
                   }}
                 >
-                  <Link href={{ pathname: `/post`, query: { id: item.postId } }}>
-                    <img className="thumbnail" src={item.thumbnail} alt={item.title} />
+                  <Link href={{ pathname: `/posts/${item.author?.userID}`, query: { id: item.postId } }}>
+                    <div className="thumbnailContainer">
+                      <img className="thumbnail" src={item.thumbnail} alt={item.title + 'Img'} />
+                    </div>
                   </Link>
-                  <div className="content">
-                    <Link href={{ pathname: `/post`, query: { id: item.postId } }}>
-                      <div className="title">{item.title}</div>
+                  <div className="itemBody">
+                    <Link href={{ pathname: `/posts/${item.author?.userID}`, query: { id: item.postId } }}>
+                      <div className="itemPost">
+                        <h4 className="postTitle">{item.title}</h4>
+                        <p className="postContent">{item.content}</p>
+                        <div className="subInfo">
+                          {item.isPrivate}
+                          <span>·</span>
+                          <span>
+                            {item.commentList?.length}
+                            개의 댓글
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                    <Link
+                      href={{
+                        pathname: `/posts/:${item.author?.userID}/${item.postId}`,
+                        query: { id: item.author?.id },
+                      }}
+                    >
+                      <div className="itemUser">
+                        <div className="userProfileImg">
+                          {item.author?.profileImg ? (
+                            <img src={item.author?.profileImg} alt="user profile image" />
+                          ) : (
+                            <div></div>
+                          )}
+                        </div>
+                        <div className="userName">
+                          <span>by</span> <p>{item.author?.userName}</p>
+                        </div>
+                        <div className="postLikes">
+                          <IconHeart />
+                          <span>{item.likes?.length}</span>
+                        </div>
+                      </div>
                     </Link>
                   </div>
                 </S.MainContentItem>

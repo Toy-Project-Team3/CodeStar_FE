@@ -4,7 +4,10 @@
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
-a,
+a {
+  text-decoration: none;
+}
+,
 abbr,
 acronym,
 address,
@@ -135,6 +138,6 @@ table {
 }
 /*# sourceMappingURL=/sm/04f4d35563f7cf9516264fcbb6e11a85def2ae5616df66563711867fe05befec.map */
 
-html{
+html {
   font-size: 10px;
 }
