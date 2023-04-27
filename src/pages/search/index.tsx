@@ -1,7 +1,7 @@
 import BaseLayout from '@/components/Layout/BaseLayout';
 import React from 'react';
 import * as S from '@/styles/searchStyled';
-import IconSearch from '@/asset/img/IconSearch';
+import IconSearch from '@/components/IconSearch';
 
 function Index() {
   return (
