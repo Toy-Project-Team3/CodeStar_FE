@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from '@/styles/blogPostStyled';
 import Link from 'next/link';
-import IconLike from '../IconLike';
+import IconLike from '@/asset/img/IconLike';
 import { PostInterface } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 

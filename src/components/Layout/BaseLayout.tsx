@@ -84,6 +84,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                 로그인
               </S.HeaderLoginButton>
             )}
+            
           </div>
         </S.Header>
       )}

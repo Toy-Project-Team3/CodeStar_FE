@@ -38,7 +38,58 @@ export default function Home() {
                     y: -3,
                   }}
                 >
-
+                  <Link
+                    href={{ pathname: `/post`, query: { postId: item.postId, userId: item.author.id } }}
+                    as={'@' + item.author.userId + '/' + item.postId}
+                  >
+                    <div className="thumbnailContainer">
+                      {item.thumbnail ? (
+                        <img className="thumbnail" src={item.thumbnail} alt={item.title + 'Img'} />
+                      ) : (
+                        <div className="emptyThumbnail"></div>
+                      )}
+                    </div>
+                  </Link>
+                  <div className="itemBody">
+                    <Link
+                      href={{ pathname: `/post`, query: { postId: item.postId, userId: item.author.id } }}
+                      as={'@' + item.author.userId + '/' + item.postId}
+                    >
+                      <div className="itemPost">
+                        <h4 className="postTitle">{item.title}</h4>
+                        <p className="postContent">{item.content}</p>
+                        <div className="subInfo">
+                          {item.isPrivate}
+                          <span>·</span>
+                          <span>
+                            {item.commentList?.length}
+                            개의 댓글
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                    <Link
+                      href={{
+                        pathname: `/posts/:${item.author?.userID}/${item.postId}`,
+                        query: { id: item.author?.id },
+                      }}
+                    >
+                      <div className="itemUser">
+                        <div className="userProfileImg">
+                          {item.author?.profileImg ? (
+                            <img src={item.author?.profileImg} alt="user profile image" />
+                          ) : (
+                            <div></div>
+                          )}
+                        </div>
+                        <div className="userName">
+                          <span>by</span> <p>{item.author?.userName}</p>
+                        </div>
+                        <div className="postLikes">
+                          <IconHeart />
+                          <span>{item.likes?.length}</span>
+                        </div>
+                      </div>
                     </Link>
                   </div>
                 </S.MainContentItem>
