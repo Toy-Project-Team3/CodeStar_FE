@@ -6,26 +6,33 @@ import IconSearch from '@/asset/img/IconSearch';
 import BlogPost from '@/components/blogPost';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
-import { getblogPosts } from '@/utils/requests';
+import { getPost, getblogPosts } from '@/utils/requests';
 import { PostInterface } from '@/types/RequestInterface';
+import { GetServerSidePropsContext } from 'next';
 
-function Index() {
-  const query = useRouter().query;
-  const { data } = useQuery('user', () => getblogPosts(query.id));
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const query = context.query.slug;
+  console.log(query);
+  if (!query) {
+    return null;
+  }
+  const res = await getblogPosts(query[0]);
 
+  return { props: { post: res } };
+}
+
+function Index({ post }: { post: PostInterface[] }) {
   return (
     <BaseLayout hasHeader>
       <S.MainContainer>
         <S.OwnerContainer>
           <div className="wrapper">
-            <Link href="javascript:void(0)">
+            <div>
               <img src="https://picsum.photos/200/300" alt="profile" />
-            </Link>
+            </div>
             <div className="owner">
-              <div className="name">
-                <Link href="javascript:void(0)">{query.userName}</Link>
-              </div>
-              <div className="description"></div>
+              <div className="name">{post[0].author.userName}</div>
+              <div className="description">{post[0].author.bio}</div>
             </div>
           </div>
           <S.UnderLine></S.UnderLine>
@@ -41,7 +48,7 @@ function Index() {
             </div>
           </div>
           <div>
-            {data?.map((post: PostInterface) => (
+            {post?.map((post: PostInterface) => (
               <BlogPost key={post.postId} blogPost={post} />
             ))}
           </div>
