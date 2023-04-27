@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout/BaseLayout';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import * as S from '@/styles/postStyled';
 import IconDislike from '@/asset/img/IconDislike';
 import Comment from '@/components/Comment';
@@ -10,6 +10,8 @@ import { CommentList, PostInterface } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 import Link from 'next/link';
 import { GetServerSidePropsContext } from 'next';
+import { useRecoilValue } from 'recoil';
+import userState from '@/utils/atom';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const query = context.query.slug;
@@ -24,6 +26,9 @@ function Index({ post }: { post: PostInterface }) {
   const [scrollYValue, setScrollYValue] = React.useState(false);
   const [like, setLike] = React.useState(false);
   const [disLike, setDisLike] = React.useState(false);
+  const [comment, setComment] = React.useState('');
+  const user = useRecoilValue(userState);
+  console.log(user);
 
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -38,6 +43,14 @@ function Index({ post }: { post: PostInterface }) {
     setDisLike(!disLike);
   };
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  const handlePostComment = () => {
+    console.log(comment);
+  };
+
   return (
     <Layout hasHeader>
       <S.MainContainer>
@@ -45,13 +58,18 @@ function Index({ post }: { post: PostInterface }) {
           <div className="title-wrapper">
             <h1>{post?.title}</h1>
           </div>
-          {/* ButtonContainer 자신의 게시글에서만 표시 */}
-          <S.ButtonContainer>
-            <Link href={{ pathname: '/posts', query: { id: post?.postId } }} as={`/posts/${post?.postId}`}>
-              <button>수정</button>
-            </Link>
-            <button>삭제</button>
-          </S.ButtonContainer>
+          {user?.id === post?.author.id ? (
+            <>
+              <S.ButtonContainer>
+                <Link href={{ pathname: '/posts', query: { id: post?.postId } }} as={`/posts/${post?.postId}`}>
+                  <button>수정</button>
+                </Link>
+                <button>삭제</button>
+              </S.ButtonContainer>
+            </>
+          ) : (
+            ''
+          )}
           <S.InformContainer>
             <div>
               <span className="username">
@@ -107,9 +125,9 @@ function Index({ post }: { post: PostInterface }) {
         <h4>{post?.commentList.length}개의 댓글</h4>
         <div>
           <S.CommentWrapper>
-            <S.CommentTextArea placeholder="댓글을 작성하세요" />
+            <S.CommentTextArea onChange={handleInputChange} placeholder="댓글을 작성하세요" />
             <S.ButtonWrapper>
-              <button>댓글 작성</button>
+              <button onClick={handlePostComment}>댓글 작성</button>
             </S.ButtonWrapper>
           </S.CommentWrapper>
         </div>
