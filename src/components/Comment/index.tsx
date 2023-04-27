@@ -5,7 +5,6 @@ import { CommentList } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 
 function Index({ comment }: { comment: CommentList }) {
-  console.log(comment);
   return (
     <S.CommentContainer>
       <S.WriterContainer>

@@ -9,7 +9,6 @@ import { GetServerSidePropsContext } from 'next';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const query = context.query.slug;
-  console.log(query);
   if (!query) {
     return null;
   }
