@@ -11,7 +11,7 @@ export const MainWrapper = styled.div`
 
 export const Header = styled.div`
   z-index: 1;
-  background: ${(p) => p.theme.background.dark};
+  background: ${(p) => p.theme.background.main};
   width: 100%;
   height: 8rem;
   display: flex;
