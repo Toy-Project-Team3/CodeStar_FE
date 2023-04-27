@@ -15,7 +15,7 @@ export const ProfileHeader = styled.div`
   display: grid;
   grid-template-columns: 1fr 2.8fr 1fr;
   width: 100%;
-  height: fit-content;
+  height: 40rem;
   position: relative;
 
   .col1 {
@@ -50,6 +50,33 @@ export const ProfileHeader = styled.div`
       &.delete {
         background-color: ${(p) => p.theme.danger};
       }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 25rem;
+      height: 5rem;
+      border: dashed 0.1rem ${(p) => p.theme.text};
+      border-radius: 0.3rem;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: ${(p) => p.theme.text};
+        color: ${(p) => p.theme.background.dark};
+      }
+    }
+    input[type='file'] {
+      display: none;
     }
   }
 

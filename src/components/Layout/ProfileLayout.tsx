@@ -40,12 +40,13 @@ function ProfileLayout({ children, hasHeader }: ProfileLayoutProp) {
         <S.ProfileHeader>
           <div className="col1">
             <div className="profile__img"></div>
-            <motion.button className="upload" whileHover="hover" whileTap="tap" variants={variants}>
-              이미지 업로드
-            </motion.button>
-            <motion.button className="delete" whileHover="hover" whileTap="tap" variants={variants}>
-              이미지 제거
-            </motion.button>
+            <form action="">
+              <label htmlFor="imgs">클릭하여 이미지를 등록하기</label>
+              <input type="file" name="imgs" id="imgs" />
+              <motion.button className="upload" whileHover="hover" whileTap="tap" variants={variants}>
+                이미지 업로드
+              </motion.button>
+            </form>
           </div>
           <div className="col2">
             <div className="col2-item">

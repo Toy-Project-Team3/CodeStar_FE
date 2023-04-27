@@ -11,7 +11,7 @@ export const MainWrapper = styled.div`
 
 export const Header = styled.div`
   z-index: 1;
-  background: ${(p) => p.theme.background.dark};
+  background: ${(p) => p.theme.background.main};
   width: 100%;
   height: 8rem;
   display: flex;
@@ -91,15 +91,16 @@ export const HeaderProfile = styled.div`
 export const MainContent = styled.div`
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-  justify-content: center;
+  display: flex;
+  /* grid-template-columns: repeat(4, 1fr);
+  place-items: center; */
+  justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 8.4rem;
   gap: 3rem;
   padding: 0 10rem;
-  @media (max-width: 1200px) {
+  /* @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
   @media (max-width: 900px) {
@@ -107,22 +108,21 @@ export const MainContent = styled.div`
   }
   @media (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
-  }
+  } */
 `;
 
 export const MainContentItem = styled(motion.div)`
   box-shadow: 0 0 1rem ${(p) => p.theme.background.dark};
-  width: 90%;
+  width: 25rem;
   height: 35rem;
   border: 1px solid ${(p) => p.theme.text};
   border-radius: 0.4rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   .thumbnail {
     width: 100%;
-    height: 50%;
+    height: 20rem;
     background-color: ${(p) => p.theme.text};
     a {
       display: block;
@@ -130,14 +130,32 @@ export const MainContentItem = styled(motion.div)`
       height: 100%;
     }
   }
-  .content {
-    a {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 0 1rem;
+
+  .itemBody {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    .itemPost {
+      padding: 1.6rem 1rem;
+      line-height: 1.5;
+      color: ${(p) => p.theme.text};
+      .postTitle {
+        font-size: 1.6rem;
+        font-weight: ${(p) => p.theme.fontWeight.bold};
+        height: 2.4rem;
+        max-lines: 1;
+      }
+      .postContent {
+        font-size: 1.4rem;
+        font-weight: ${(p) => p.theme.fontWeight.normal};
+        height: 6.3rem;
+        max-lines: 3;
+      }
+      .subInfo {
+        display: flex;
+        gap: 1rem;
+        font-size: 1.2rem;
+        color: ${(p) => p.theme.color.light};
+      }
     }
     .title {
       font-size: 2.5rem;
