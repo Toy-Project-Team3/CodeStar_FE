@@ -34,7 +34,7 @@ const ToastEditor = forwardRef((props, ref) => {
   const liftEditorContent = function () {
     console.log(editorRef.current.getInstance().getMarkdown());
     console.log(editorRef.current.getInstance().getHTML());
-    getEditorContent(editorRef.current.getInstance().getMarkdown());
+    getEditorContent(editorRef.current.getInstance().getHTML());
   };
   function resetEditor() {
     editorRef.current.getInstance().reset();
