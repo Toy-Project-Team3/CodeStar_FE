@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import * as S from '@/styles/styled';
-import Logo from '@/components/Logo';
+import Logo from '@/asset/img/Logo';
 import Link from 'next/link';
 import Modal from '../Modal';
 import { BaseLayoutProp } from '@/types/componentProps';
-import IconSearch from '../IconSearch';
+import IconSearch from '../../asset/img/IconSearch';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [modalOpen, setModalOpen] = useState<boolean>(false);

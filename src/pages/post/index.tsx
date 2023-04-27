@@ -1,16 +1,19 @@
 import Layout from '@/components/Layout/BaseLayout';
 import React from 'react';
 import * as S from '@/styles/postStyled';
-import IconDislike from '@/components/IconDislike';
+import IconDislike from '@/asset/img/IconDislike';
 import Comment from '@/components/Comment';
 import CreditScore from '@/components/CreditScore';
-import IconLike from '@/components/IconLike';
+
+import IconLike from '@/asset/img/IconLike';
+
 import { useQuery } from 'react-query';
 import { getPost, getPosts } from '@/utils/requests';
 import { useRouter } from 'next/router';
 import { CommentList } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 import Link from 'next/link';
+
 
 function Index() {
   const [scrollYValue, setScrollYValue] = React.useState(false);
