@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as S from '@/styles/styled';
-import Logo from '@/components/Logo';
+import Logo from '@/asset/img/Logo';
 import Link from 'next/link';
 import Modal from '../Modal';
 import { BaseLayoutProp } from '@/types/componentProps';
-import IconSearch from '../IconSearch';
+import IconSearch from '@/asset/img/IconSearch';
 import { getCookie, removeCookie } from '@/utils/cookies';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
@@ -84,7 +84,6 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                 로그인
               </S.HeaderLoginButton>
             )}
-            
           </div>
         </S.Header>
       )}

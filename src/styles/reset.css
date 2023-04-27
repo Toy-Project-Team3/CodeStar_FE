@@ -4,7 +4,10 @@
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
-a,
+a {
+  text-decoration: none;
+}
+,
 abbr,
 acronym,
 address,
@@ -137,7 +140,4 @@ table {
 
 html {
   font-size: 10px;
-}
-a {
-  text-decoration: none;
 }
