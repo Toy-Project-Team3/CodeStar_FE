@@ -4,7 +4,7 @@ import * as S from '@/styles/postStyled';
 import IconDislike from '@/components/IconDislike';
 import Comment from '@/components/Comment';
 import CreditScore from '@/components/CreditScore';
-import IconLike from '@/components/IconLike';
+import IconLike from '@/asset/img/IconLike';
 import { useQuery } from 'react-query';
 import { getPost, getPosts } from '@/utils/requests';
 import { useRouter } from 'next/router';
