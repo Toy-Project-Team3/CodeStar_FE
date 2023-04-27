@@ -1,29 +1,36 @@
 import React from 'react';
 import * as S from '@/styles/commentStyled';
 import Link from 'next/link';
+import { CommentList } from '@/types/RequestInterface';
+import { getDate } from '@/utils/dateFormat';
 
-function Index() {
+function Index({ comment }: { comment: CommentList }) {
+  console.log(comment);
   return (
     <S.CommentContainer>
       <S.WriterContainer>
         <div className="profile">
-          <Link href="#">
-            <img src="https://picsum.photos/200/300" />
+          <Link
+            href={{ pathname: `/profile`, query: { usedId: comment?.author.userId } }}
+            as={'@' + comment?.author.userId}
+          >
+            <img src={comment.author.profileImg} />
           </Link>
           <div className="comment-info">
             <div className="username">
-              <Link href="#">사용자</Link>
+              <Link
+                href={{ pathname: `/profile`, query: { usedId: comment?.author.userId } }}
+                as={'@' + comment?.author.userId}
+              >
+                {comment.author.userName}
+              </Link>
             </div>
-            <div className="date">5일 전</div>
+            <div className="date">{getDate(comment.createdAt)}</div>
           </div>
         </div>
       </S.WriterContainer>
       <S.ContentContainer>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus obcaecati sunt unde asperiores dolores
-          dolor ad. Perferendis vitae earum quod architecto reiciendis suscipit voluptates, voluptatem odit mollitia
-          adipisci, fugiat praesentium.
-        </p>
+        <p>{comment.content}</p>
       </S.ContentContainer>
     </S.CommentContainer>
   );

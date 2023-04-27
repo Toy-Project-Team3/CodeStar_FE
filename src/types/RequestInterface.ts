@@ -4,23 +4,26 @@ export interface PostInterface {
   content?: string;
   thumbnail?: File;
   isPrivate: boolean;
-  author?: Author;
-  commentList?: CommentList[];
+  author: Author;
+  commentList: CommentList[];
   likes?: Like[];
+  dislikes?: Like[];
+  createdAt: Date;
 }
 
 export interface Author {
   id: string;
-  userID: string;
+  userId: string;
   userName: string;
-  profileImg?: string;
+  profileImg: string;
+  bio?: string;
 }
 
 export interface CommentList {
   commentID: string;
   content: string;
   createdAt: Date;
-  updatedAt: Date;
+  author: Author;
 }
 
 export interface Like {
