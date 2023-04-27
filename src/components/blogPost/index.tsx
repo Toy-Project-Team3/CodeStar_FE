@@ -8,10 +8,7 @@ import { getDate } from '@/utils/dateFormat';
 function Index({ blogPost }: { blogPost: PostInterface }) {
   return (
     <S.MainContainer>
-      <Link
-        href={{ pathname: `/post`, query: { postId: blogPost.postId, userId: blogPost.author.id } }}
-        as={'@' + blogPost.author.userId + '/' + blogPost.postId}
-      >
+      <Link href={{ pathname: `/post/${blogPost.author.id}/${blogPost.postId}` }}>
         <h2 className="title">{blogPost.title}</h2>
       </Link>
       <p className="content">{blogPost.content}</p>

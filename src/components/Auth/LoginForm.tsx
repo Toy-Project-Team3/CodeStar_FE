@@ -3,6 +3,8 @@ import { instance } from '../../utils/axiosInstance';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { setCookie } from '@/utils/cookies';
 import * as S from '@/styles/modal';
+import { useRecoilState } from 'recoil';
+import userState from '@/utils/atom';
 
 interface FormValues {
   userId: string;
@@ -16,6 +18,7 @@ interface LoginFormProps {
 }
 
 function LoginForm({ setLogin, setModalOpen, setToken }: LoginFormProps) {
+  const [user, setUser] = useRecoilState(userState);
   const {
     register,
     handleSubmit,
@@ -29,6 +32,7 @@ function LoginForm({ setLogin, setModalOpen, setToken }: LoginFormProps) {
       setToken(response.data.accessToken);
       setCookie(response.data.accessToken, { path: '/', maxAge: 3600, sameSite: 'strict' });
       console.log(response.data);
+      setUser(response.data.content);
     } catch (error) {
       console.log(error);
     }
