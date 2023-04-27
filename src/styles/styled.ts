@@ -48,6 +48,7 @@ export const HeaderSearchButton = styled.button`
 
 export const HeaderWriteButton = styled(motion.button)`
   width: 14rem;
+  height: 100%;
   cursor: pointer;
   background-color: transparent;
   color: ${(p) => p.theme.text};

@@ -24,9 +24,11 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                 <IconSearch />
               </Link>
             </S.HeaderSearchButton>
-            <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              글쓰기
-            </S.HeaderWriteButton>
+            <Link href={{ pathname: '/posts' }}>
+              <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                글쓰기
+              </S.HeaderWriteButton>
+            </Link>
             <Link href="/profile">
               <S.HeaderProfile></S.HeaderProfile>
             </Link>
