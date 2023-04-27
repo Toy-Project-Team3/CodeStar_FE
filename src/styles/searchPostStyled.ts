@@ -28,29 +28,31 @@ export const UserContainer = styled.div`
     font-size: 1.4rem;
     color: #ececec;
     font-weight: bold;
-  }
-`;
-
-export const ThumbnailLink = styled(Link)`
-  .thumbnail {
-    padding-top: 52%;
-    margin-bottom: 1rem;
-    width: 100%;
-    position: relative;
-
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
   }
 `;
 
-export const TitleLink = styled(Link)`
+export const ThumbnailLink = styled.div`
+  padding-top: 52%;
+  margin-bottom: 1rem;
+  width: 100%;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+`;
+
+export const TitleLink = styled.div`
   color: inherit;
   text-decoration: none;
 
