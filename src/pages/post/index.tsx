@@ -12,8 +12,15 @@ import { CommentList } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 import Link from 'next/link';
 
+// export async function getServerSideProps() {
+//   const res = await getPost()
+// }
+
 function Index() {
   const [scrollYValue, setScrollYValue] = React.useState(false);
+  const [like, setLike] = React.useState(false);
+  const [disLike, setDisLike] = React.useState(false);
+
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 290 ? setScrollYValue(true) : setScrollYValue(false);
@@ -21,6 +28,13 @@ function Index() {
   });
   const query = useRouter().query;
   const { data: post } = useQuery('post', () => getPost(query.userId, query.postId));
+
+  const handleClickLike = () => {
+    setLike(!like);
+  };
+  const handleClickDisLike = () => {
+    setDisLike(!disLike);
+  };
 
   return (
     <Layout hasHeader>
@@ -52,13 +66,13 @@ function Index() {
           </S.InformContainer>
           <div style={{ position: 'relative', marginTop: '2rem' }}>
             <S.StickyContainer>
-              <S.StickyWrapper scrollY={scrollYValue}>
-                <div className="sticky--icon">
-                  <IconLike />
+              <S.StickyWrapper scrollY={scrollYValue} like={like} dislike={disLike}>
+                <div className="sticky--icon like" onClick={handleClickLike}>
+                  <IconLike color={like ? '#000' : '#acacac'} />
                 </div>
                 <div className="count">{post?.likes?.length}</div>
-                <div className="sticky--icon">
-                  <IconDislike />
+                <div className="sticky--icon dislike" onClick={handleClickDisLike}>
+                  <IconDislike color={disLike ? '#000' : '#acacac'} />
                 </div>
                 <div className="count">{post?.dislikes?.length}</div>
               </S.StickyWrapper>

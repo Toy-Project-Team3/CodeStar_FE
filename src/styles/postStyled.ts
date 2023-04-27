@@ -118,6 +118,14 @@ export const StickyWrapper = styled.div`
     margin-bottom: 1rem;
     font-weight: bold;
   }
+
+  .like {
+    background-color: ${({ like }) => (like ? '#63E6be' : '#000')};
+  }
+
+  .dislike {
+    background-color: ${({ dislike }) => (dislike ? '#63E6be' : '#000')};
+  }
 `;
 
 export const ContentContainer = styled(TitleContainer)`
