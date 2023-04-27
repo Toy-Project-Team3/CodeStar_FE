@@ -40,6 +40,7 @@ export default function Home() {
                     y: -3,
                   }}
                 >
+
                   <Link href={{ pathname: `/posts/${item.author?.userID}`, query: { id: item.postId } }}>
                     <div className="thumbnailContainer">
                       {item.thumbnail ? (
@@ -86,6 +87,7 @@ export default function Home() {
                           <span>{item.likes?.length}</span>
                         </div>
                       </div>
+
                     </Link>
                   </div>
                 </S.MainContentItem>
