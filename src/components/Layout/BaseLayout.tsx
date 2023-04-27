@@ -6,6 +6,7 @@ import Modal from '../Modal';
 import { BaseLayoutProp } from '@/types/componentProps';
 import IconSearch from '@/asset/img/IconSearch';
 import { getCookie, removeCookie } from '@/utils/cookies';
+import { instance } from '@/utils/axiosInstance';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [token, setToken] = useState<boolean>(false);
@@ -14,6 +15,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const subnavRef = useRef<HTMLUListElement>(null);
 
   const handleOutsideClick = (event: MouseEvent) => {
+    if (!subnavRef.current) return;
     if (subnavRef.current && !subnavRef.current.contains(event.target as Node)) {
       setSubnavOpen(false);
     }
@@ -31,7 +33,18 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
     if (cookieToken) {
       setToken(true);
     }
-  }, []);
+    setSubnavOpen(false);
+  }, [token]);
+
+  const handleLogout = async () => {
+    try {
+      await instance.post('/auth/logout');
+      setToken(false);
+      removeCookie();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <S.MainWrapper>
@@ -54,7 +67,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                   글쓰기
                 </S.HeaderWriteButton>
                 <S.MyInfo>
-                  <S.HeaderProfile onClick={() => setSubnavOpen(true)} />
+                  <S.HeaderProfile onClick={() => setSubnavOpen((prevState) => !prevState)} />
                   {subnavOpen && (
                     <S.MyList ref={subnavRef}>
                       <li>
@@ -63,12 +76,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                       <li>
                         <Link href="#">마이페이지</Link>
                       </li>
-                      <li
-                        onClick={() => {
-                          setToken(false);
-                          removeCookie();
-                        }}
-                      >
+                      <li onClick={handleLogout}>
                         <p>로그아웃</p>
                       </li>
                     </S.MyList>
