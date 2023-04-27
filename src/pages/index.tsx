@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Head from 'next/head';
 import * as S from '@/styles/styled';
 import BaseLayout from '@/components/Layout/BaseLayout';
@@ -71,10 +70,8 @@ export default function Home() {
                       </div>
                     </Link>
                     <Link
-                      href={{
-                        pathname: `/posts/:${item.author?.userID}/${item.postId}`,
-                        query: { id: item.author?.id },
-                      }}
+                      href={{ pathname: `/blog`, query: { id: item?.author.id, userName: item?.author.userName } }}
+                      as={'@' + item?.author.userId}
                     >
                       <div className="itemUser">
                         <div className="userProfileImg">
