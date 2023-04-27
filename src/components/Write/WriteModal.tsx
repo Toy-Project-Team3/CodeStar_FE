@@ -44,6 +44,7 @@ const WriteModal: React.FC<Props> = (props: WriteModalProps) => {
       console.log(formData);
       await setPost(post);
       postPost(formData);
+      setIsClicked(false);
       // putEditPost({ title, content, thumbnail, isPrivate });
     } else {
       alert('제목을 작성해주세요');

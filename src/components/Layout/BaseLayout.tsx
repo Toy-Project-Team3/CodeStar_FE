@@ -68,9 +68,11 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
             </S.HeaderSearchButton>
             {token ? (
               <>
-                <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  글쓰기
-                </S.HeaderWriteButton>
+                <Link href={'/posts'}>
+                  <S.HeaderWriteButton whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    글쓰기
+                  </S.HeaderWriteButton>
+                </Link>
                 <S.MyInfo>
                   <S.HeaderProfile ref={headerProfileRef} onClick={() => setSubnavOpen((prevState) => !prevState)} />
                   {subnavOpen && (

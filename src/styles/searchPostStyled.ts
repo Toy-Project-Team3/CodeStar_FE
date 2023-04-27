@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 export const MainContaier = styled.div`
   border-bottom: 1px solid #2a2a2a;
-  padding: 5rem 0;
+  padding: 5rem 3rem;
   line-height: 1.5;
+  background-color: ${(p) => p.theme.color.dark2};
 `;
 
 export const UserContainer = styled.div`
@@ -25,7 +26,7 @@ export const UserContainer = styled.div`
   }
 
   .username {
-    font-size: 1.4rem;
+    font-size: 2rem;
     color: #ececec;
     font-weight: bold;
     a {
@@ -49,6 +50,7 @@ export const ThumbnailLink = styled.div`
     height: 100%;
     display: block;
     object-fit: cover;
+    background-color: ${(p) => p.theme.color.light};
   }
 `;
 
