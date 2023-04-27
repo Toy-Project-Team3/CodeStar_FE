@@ -28,7 +28,7 @@ function Index({ post }: { post: PostInterface }) {
   const [disLike, setDisLike] = React.useState(false);
   const [comment, setComment] = React.useState('');
   const user = useRecoilValue(userState);
-  console.log(user);
+  console.log(user, post);
 
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -50,6 +50,8 @@ function Index({ post }: { post: PostInterface }) {
   const handlePostComment = () => {
     console.log(comment);
   };
+
+  const parseCode = (content: string) => {};
 
   return (
     <Layout hasHeader>
