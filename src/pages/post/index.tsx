@@ -31,7 +31,9 @@ function Index() {
           </div>
           {/* ButtonContainer 자신의 게시글에서만 표시 */}
           <S.ButtonContainer>
-            <button>수정</button>
+            <Link href={{ pathname: '/posts', query: { id: post?.postId } }} as={`/posts/${post?.postId}`}>
+              <button>수정</button>
+            </Link>
             <button>삭제</button>
           </S.ButtonContainer>
           <S.InformContainer>
