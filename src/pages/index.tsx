@@ -42,7 +42,11 @@ export default function Home() {
                 >
                   <Link href={{ pathname: `/posts/${item.author?.userID}`, query: { id: item.postId } }}>
                     <div className="thumbnailContainer">
-                      <img className="thumbnail" src={item.thumbnail} alt={item.title + 'Img'} />
+                      {item.thumbnail ? (
+                        <img className="thumbnail" src={item.thumbnail} alt={item.title + 'Img'} />
+                      ) : (
+                        <div className="emptyThumbnail"></div>
+                      )}
                     </div>
                   </Link>
                   <div className="itemBody">

@@ -106,6 +106,11 @@ export const MainContentItem = styled(motion.div)`
       width: 100%;
       height: 100%;
     }
+    .emptyThumbnail {
+      width: 100%;
+      height: 100%;
+      background-color: ${(p) => p.theme.color.lightDark};
+    }
   }
   .itemBody {
     display: grid;
@@ -153,6 +158,8 @@ export const MainContentItem = styled(motion.div)`
         }
       }
       .userName {
+        display: flex;
+        gap: 0.7rem;
         span {
           color: ${(p) => p.theme.color.light};
           opacity: 0.8;
