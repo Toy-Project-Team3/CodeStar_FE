@@ -4,7 +4,7 @@ export const Background = styled.div`
   position: absolute;
   height: 100vh;
   width: 100vw;
-  background-color: black;
+  background-color: #111;
   display: flex;
 `;
 export const Wrapper = styled.div`
