@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { instance, imgInstance } from '@/utils/axiosInstance';
 import { PostInterface } from '@/types/RequestInterface';
 import { User, UserInfo } from '@/types/User';

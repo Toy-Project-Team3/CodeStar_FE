@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import userState from '@/utils/atom';
 import { getMyInfo } from '@/utils/requests';
-import { User, UserInfo } from '@/types/User';
+import { UserInfo } from '@/types/User';
 
 const variants: Variants = {
   hover: {
