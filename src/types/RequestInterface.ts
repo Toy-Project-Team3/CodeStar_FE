@@ -2,7 +2,7 @@ export interface PostInterface {
   postId?: string;
   title: string;
   content?: string;
-  thumbnail?: File;
+  thumbnail?: string;
   isPrivate: boolean;
   author: Author;
   commentList: CommentList[];

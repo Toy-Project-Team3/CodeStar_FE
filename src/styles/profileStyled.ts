@@ -31,6 +31,11 @@ export const ProfileHeader = styled.div`
       height: 20rem;
       border-radius: 50%;
       background-color: ${(p) => p.theme.text};
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
     }
 
     button {

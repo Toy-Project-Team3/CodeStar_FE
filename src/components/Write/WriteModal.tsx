@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import EmptyThumbnail from '@/asset/img/IconEmptyThumbnail';
 import * as S from '@/styles/writeModalStyled';
 import * as B from '@/styles/buttonStyled';
 import { File } from 'buffer';
-import { WriteModalProps, Post } from '@/types/Posts';
+import { Post, WriteModalProps } from '@/types/Posts';
 
 const WriteModal: React.FC<Props> = (props: WriteModalProps) => {
   const [isActive, setIsActive] = useState<boolean>(true);

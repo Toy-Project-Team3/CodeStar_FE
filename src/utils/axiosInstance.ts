@@ -1,6 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { getCookie } from '@/utils/cookies';
-import { error } from 'console';
 
 const createInstance = (ContentType: string) => {
   const instance = axios.create({
