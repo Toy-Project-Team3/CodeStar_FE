@@ -13,7 +13,8 @@ import Link from 'next/link';
 import { GetServerSidePropsContext } from 'next';
 import { useRecoilValue } from 'recoil';
 import userState from '@/utils/atom';
-
+import dynamic from 'next/dynamic';
+const Viewer = dynamic(() => import('@/components/TuiEditor/Viewer'), { ssr: false });
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const query = context.query.slug;
   // const containerRef = useRef(<div id="viewer"></div>);
@@ -109,7 +110,7 @@ function Index({ post }: { post: PostInterface }) {
       </S.MainContainer>
       <S.ContentContainer>
         {/* <Test /> */}
-        <Viewer initialValue={post.content} />
+        <Viewer initialValue={post.content} height={500} />
         {/* <div id="viewer" ref={containerRef}></div> */}
       </S.ContentContainer>
       <S.WriterContainer>
