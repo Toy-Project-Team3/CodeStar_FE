@@ -1,6 +1,7 @@
 import React from 'react';
-import { instance } from '@/utils/axiosInstance';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { instance } from '../../utils/axiosInstance';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { setCookie } from '@/utils/cookies';
 import { useRecoilState } from 'recoil';
 import userState from '@/utils/atom';
@@ -18,23 +19,24 @@ interface LoginFormProps {
 
 function LoginForm({ setLogin, setModalOpen, setToken }: LoginFormProps) {
   const [user, setUser] = useRecoilState(userState);
+  const { mutate, isLoading, error } = useMutation((data: FormValues) => instance.post('/auth/login', data), {
+    onSuccess: (response) => {
+      setLogin(true);
+      setToken(response.data.accessToken);
+      setCookie(response.data.accessToken, response.data.content, { path: '/', maxAge: 3600, sameSite: 'strict' });
+      console.log(response.data);
+      // setUser(response.data.content);
+    },
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      const response = await instance.post('/auth/login', data);
-      setModalOpen(false);
-      setToken(response.data.accessToken);
-      setCookie(response.data.accessToken, { path: '/', maxAge: 3600, sameSite: 'strict' });
-      console.log(response.data.content);
-      setUser(response.data.content.id);
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    mutate(data);
   };
 
   return (
