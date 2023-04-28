@@ -20,6 +20,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const subnavRef = useRef<HTMLUListElement>(null);
   const headerProfileRef = useRef(null);
   const [user, setUser] = useRecoilState(userState);
+  console.log(user);
   const handleOutsideClick = (event: MouseEvent) => {
     if (!subnavRef.current || !headerProfileRef.current) return;
 
@@ -88,7 +89,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                   <S.HeaderProfile ref={headerProfileRef} onClick={() => setSubnavOpen((prevState) => !prevState)} />
                   {subnavOpen && (
                     <S.MyList ref={subnavRef}>
-                      <li>{user && <Link href={'/blog/' + user}>나의 글</Link>}</li>
+                      <li>{user && <Link href={{ pathname: `/blog/${user.id}` }}>나의 글</Link>}</li>
                       <li>
                         <Link href="/profile">마이페이지</Link>
                       </li>
