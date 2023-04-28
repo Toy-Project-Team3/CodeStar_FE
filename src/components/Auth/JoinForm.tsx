@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { instance } from '../../utils/axiosInstance';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 
 interface FormValues {
   userId: string;
@@ -21,16 +22,17 @@ function JoinForm({ setLogin }: { setLogin: (value: boolean) => void }) {
 
   const password = watch('password');
 
+  const { mutate, isLoading, error } = useMutation(
+    (data: Omit<FormValues, 'passwordConfirm'>) => instance.post('/auth/register', data),
+    {
+      onSuccess: () => setLogin(true),
+      onError: (error: any) => setMessage(error.response.data.message),
+    },
+  );
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const { passwordConfirm, ...rest } = data;
-    try {
-      const response = await instance.post('/auth/register', rest);
-      setLogin(true);
-      console.log(response.data);
-    } catch (error: any) {
-      console.log(error);
-      setMessage(error.response.data.message);
-    }
+    mutate(rest);
   };
 
   return (

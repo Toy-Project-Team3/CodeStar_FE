@@ -2,21 +2,25 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/asset/img/Logo';
 import Link from 'next/link';
+import Image from 'next/image';
 import Modal from '../Modal';
 import { BaseLayoutProp } from '@/types/componentProps';
 import IconSearch from '@/asset/img/IconSearch';
 import { getCookie, removeCookie } from '@/utils/cookies';
-import { instance } from '@/utils/axiosInstance';
+import { imgInstance, instance } from '@/utils/axiosInstance';
+import { getMyInfo } from '@/utils/requests';
 import { useRecoilState } from 'recoil';
 import userState from '@/utils/atom';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [token, setToken] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useState<any>(null);
   const [subnavOpen, setSubnavOpen] = useState<boolean>(false);
   const subnavRef = useRef<HTMLUListElement>(null);
   const headerProfileRef = useRef(null);
   const [user, setUser] = useRecoilState(userState);
+  console.log(user);
   const handleOutsideClick = (event: MouseEvent) => {
     if (!subnavRef.current || !headerProfileRef.current) return;
 
@@ -39,8 +43,13 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
     const cookieToken = getCookie();
     if (cookieToken) {
       setToken(true);
+      // getMyInfo('dc1a21ba-d3b1-4e1e-85ac-6a2b9d6581a4').then((data) => {
+      //   setUserInfo(data.profileImg);
+      // });
     }
     setSubnavOpen(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const handleLogout = async () => {
@@ -76,10 +85,11 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                   </S.HeaderWriteButton>
                 </Link>
                 <S.MyInfo>
+                  {/* {userInfo ? <img src={userInfo} alt="프로필 이미지" /> : <img src="../asset/img/my.png" />} */}
                   <S.HeaderProfile ref={headerProfileRef} onClick={() => setSubnavOpen((prevState) => !prevState)} />
                   {subnavOpen && (
                     <S.MyList ref={subnavRef}>
-                      <li>{user && <Link href={'/blog/' + user}>나의 글</Link>}</li>
+                      <li>{user && <Link href={{ pathname: `/blog/${user.id}` }}>나의 글</Link>}</li>
                       <li>
                         <Link href="/profile">마이페이지</Link>
                       </li>

@@ -5,13 +5,12 @@ import Welcome from '../asset/img/welcome.svg';
 import LoginForm from './Auth/LoginForm';
 import JoinForm from './Auth/JoinForm';
 
-function Modal({
-  setModalOpen,
-  setToken,
-}: {
+interface ModalProps {
   setModalOpen: (value: boolean) => void;
   setToken: (value: boolean) => void;
-}) {
+}
+
+function Modal({ setModalOpen, setToken }: ModalProps) {
   const [login, setLogin] = useState(true);
 
   const handleSetToken = (newToken: boolean) => {

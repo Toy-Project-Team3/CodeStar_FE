@@ -17,7 +17,7 @@ export const getblogPosts = async (userId: string) => {
   return res.data;
 };
 
-export const createPost = async (post) => {
+export const createPost = async (post: any) => {
   const response = await imgInstance.post('posts', post);
 
   return response.data;

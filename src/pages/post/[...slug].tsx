@@ -13,8 +13,6 @@ import Link from 'next/link';
 import { GetServerSidePropsContext } from 'next';
 import { useRecoilValue } from 'recoil';
 import userState from '@/utils/atom';
-import dynamic from 'next/dynamic';
-const Viewer = dynamic(() => import('@/components/TuiEditor/Viewer'), { ssr: false });
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const query = context.query.slug;
@@ -32,10 +30,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 function Index({ post }: { post: PostInterface }) {
-  const [scrollYValue, setScrollYValue] = useState(false);
-  const [like, setLike] = useState(false);
-  const [disLike, setDisLike] = useState(false);
-  const [comment, setComment] = useState('');
+  const [scrollYValue, setScrollYValue] = React.useState(false);
+  const [like, setLike] = React.useState(false);
+  const [disLike, setDisLike] = React.useState(false);
+  const [comment, setComment] = React.useState('');
   const user = useRecoilValue(userState);
 
   useEffect(() => {
