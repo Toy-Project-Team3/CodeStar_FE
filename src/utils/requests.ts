@@ -1,7 +1,6 @@
-import axios from 'axios';
-import { instance, imgInstance } from '@/utils/axiosInstance';
+import { imgInstance, instance } from '@/utils/axiosInstance';
 import { PostInterface } from '@/types/RequestInterface';
-import { User } from '@/types/User';
+import { User, UserInfo } from '@/types/User';
 
 export const getPosts = async () => {
   const res = await instance.get<PostInterface[]>(`posts`);
@@ -44,7 +43,7 @@ export const postComment = async (userId: String, postId: String, post: string) 
   return response.data;
 };
 
-export const getMyInfo = async (userId: string): Promise<User> => {
+export const getMyInfo = async (userId: string): Promise<UserInfo> => {
   const response = await instance.get(`auth/mypage/${userId}`);
   return response.data;
 };

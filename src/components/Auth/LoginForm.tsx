@@ -1,8 +1,7 @@
 import React from 'react';
-import { instance } from '../../utils/axiosInstance';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { instance } from '@/utils/axiosInstance';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { setCookie } from '@/utils/cookies';
-import * as S from '@/styles/modal';
 import { useRecoilState } from 'recoil';
 import userState from '@/utils/atom';
 
@@ -31,8 +30,8 @@ function LoginForm({ setLogin, setModalOpen, setToken }: LoginFormProps) {
       setModalOpen(false);
       setToken(response.data.accessToken);
       setCookie(response.data.accessToken, { path: '/', maxAge: 3600, sameSite: 'strict' });
-      console.log(response.data);
-      setUser(response.data.content);
+      console.log(response.data.content);
+      setUser(response.data.content.id);
     } catch (error) {
       console.log(error);
     }
