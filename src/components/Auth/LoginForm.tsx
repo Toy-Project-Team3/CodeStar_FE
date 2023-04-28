@@ -25,7 +25,7 @@ function LoginForm({ setLogin, setModalOpen, setToken }: LoginFormProps) {
       setToken(response.data.accessToken);
       setCookie(response.data.accessToken, response.data.content, { path: '/', maxAge: 3600, sameSite: 'strict' });
       console.log(response.data);
-      // setUser(response.data.content);
+      setUser(response.data.content);
     },
   });
 
