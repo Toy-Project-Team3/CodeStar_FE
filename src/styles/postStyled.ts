@@ -134,7 +134,22 @@ export const StickyWrapper = styled.div<{ scrollY: Boolean; like: Boolean; disli
 
 export const ContentContainer = styled(TitleContainer)`
   margin-top: 5rem;
-  font-size: 10rem;
+  font-size: 2rem;
+  line-height: 1.5;
+  .toastui-editor-ww-code-block {
+    margin: 3rem 0;
+    pre {
+      code {
+        width: 100%;
+        margin: 2rem;
+        padding: 2rem;
+        color: #b3d4fc;
+        display: block;
+        border-radius: 1rem;
+        background-color: #212121;
+      }
+    }
+  }
 `;
 
 export const WriterContainer = styled.div`

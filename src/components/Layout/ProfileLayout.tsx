@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BaseLayout from '@/components/Layout/BaseLayout';
 import { ProfileLayoutProp } from '@/types/componentProps';
 import * as S from '@/styles/profileStyled';
-import { motion, Variants } from 'framer-motion';
 import { ProfileActivity } from '@/styles/profileStyled';
+import { motion, Variants } from 'framer-motion';
 import CreditScore from '@/components/CreditScore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useRecoilValue } from 'recoil';
+import userState from '@/utils/atom';
+import { getMyInfo } from '@/utils/requests';
+import { UserInfo } from '@/types/User';
 
 const variants: Variants = {
   hover: {
@@ -23,23 +27,32 @@ const variants: Variants = {
   },
 };
 
-interface ProfileConstants {
-  [key: string]: string;
-}
-
-const profileConstants: ProfileConstants = {
-  LIKE: '좋아요',
-  MYPOSTS: '게시글',
-};
-
 function ProfileLayout({ children, hasHeader }: ProfileLayoutProp) {
+  const [data, setData] = useState<UserInfo | null>(null);
+  const userId = useRecoilValue(userState);
   const route = useRouter();
+
+  const getUserInfo = async (userId: string) => {
+    if (userId === '') await route.push('/');
+    else {
+      const res = await getMyInfo(userId);
+      console.log(res);
+      setData(res);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo(userId);
+  }, []);
+
   return (
     <BaseLayout hasHeader={hasHeader}>
       <S.ProfileWrapper>
         <S.ProfileHeader>
           <div className="col1">
-            <div className="profile__img"></div>
+            <div className="profile__img">
+              <img src={data?.profileImg} alt="profileImg" />
+            </div>
             <form action="">
               <label htmlFor="imgs">클릭하여 이미지를 등록하기</label>
               <input type="file" name="imgs" id="imgs" />
@@ -59,24 +72,23 @@ function ProfileLayout({ children, hasHeader }: ProfileLayoutProp) {
                 <h1>활동</h1>
               </div>
               <div className="activity__body">
-                {Object.keys(profileConstants).map((key, index) => (
-                  <div
-                    key={index}
-                    className={
-                      'activity__body__item' + (route.pathname.split('/')[2] === key.toLowerCase() ? ' active' : '')
-                    }
-                  >
-                    <Link href={`/profile/${key.toLowerCase()}`}>
-                      <span>{profileConstants[key]}</span>
-                    </Link>
-                    <p>0</p>
-                  </div>
-                ))}
+                <div>
+                  <Link href="#">
+                    <span>작성한 게시글</span>
+                  </Link>
+                  <p>{data?.postList.length}</p>
+                </div>
+                <div>
+                  <Link href="#">
+                    <span>좋아요 남긴 게시글</span>
+                  </Link>
+                  <p>{data?.likes.length}</p>
+                </div>
               </div>
             </ProfileActivity>
           </div>
           <div className="col3">
-            <CreditScore />
+            <CreditScore score={data?.credits.creditScore!} />
           </div>
         </S.ProfileHeader>
         <S.ProfileBody>{children}</S.ProfileBody>

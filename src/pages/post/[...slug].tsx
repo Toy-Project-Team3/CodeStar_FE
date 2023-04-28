@@ -28,13 +28,17 @@ function Index({ post }: { post: PostInterface }) {
   const [disLike, setDisLike] = React.useState(false);
   const [comment, setComment] = React.useState('');
   const user = useRecoilValue(userState);
-  console.log(user, post);
 
   React.useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 290 ? setScrollYValue(true) : setScrollYValue(false);
     });
   });
+
+  const Test = () => {
+    const pppp = post?.content ? post?.content : '';
+    return <div dangerouslySetInnerHTML={{ __html: pppp }}></div>;
+  };
 
   const handleClickLike = () => {
     setLike(!like);
@@ -50,8 +54,6 @@ function Index({ post }: { post: PostInterface }) {
   const handlePostComment = () => {
     console.log(comment);
   };
-
-  const parseCode = (content: string) => {};
 
   return (
     <Layout hasHeader>
@@ -99,12 +101,7 @@ function Index({ post }: { post: PostInterface }) {
         </S.TitleContainer>
       </S.MainContainer>
       <S.ContentContainer>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum asperiores minus, necessitatibus similique, quos
-        et molestiae, deleniti maiores sed libero recusandae veniam quae dolor accusantium ex expedita officiis velit
-        voluptatem, <br />
-        <br />
-        post:
-        {post?.content}
+        <Test />
       </S.ContentContainer>
       <S.WriterContainer>
         <S.WriterWrapper>

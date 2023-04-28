@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
@@ -34,7 +34,7 @@ const ToastEditor = forwardRef((props, ref) => {
   const liftEditorContent = function () {
     console.log(editorRef.current.getInstance().getMarkdown());
     console.log(editorRef.current.getInstance().getHTML());
-    getEditorContent(editorRef.current.getInstance().getMarkdown());
+    getEditorContent(editorRef.current.getInstance().getHTML());
   };
   function resetEditor() {
     editorRef.current.getInstance().reset();

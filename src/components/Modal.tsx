@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import * as S from '@/styles/modal';
-import Image from 'next/image';
 import Close from '../asset/img/close.svg';
 import Welcome from '../asset/img/welcome.svg';
 import LoginForm from './Auth/LoginForm';

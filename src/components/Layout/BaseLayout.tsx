@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/asset/img/Logo';
 import Link from 'next/link';
@@ -9,6 +9,8 @@ import IconSearch from '@/asset/img/IconSearch';
 import { getCookie, removeCookie } from '@/utils/cookies';
 import { imgInstance, instance } from '@/utils/axiosInstance';
 import { getMyInfo } from '@/utils/requests';
+import { useRecoilState } from 'recoil';
+import userState from '@/utils/atom';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [token, setToken] = useState<boolean>(false);
@@ -17,7 +19,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [subnavOpen, setSubnavOpen] = useState<boolean>(false);
   const subnavRef = useRef<HTMLUListElement>(null);
   const headerProfileRef = useRef(null);
-
+  const [user, setUser] = useRecoilState(userState);
   const handleOutsideClick = (event: MouseEvent) => {
     if (!subnavRef.current || !headerProfileRef.current) return;
 
@@ -28,7 +30,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
       setSubnavOpen(false);
     }
   };
-
+  console.log(user);
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
@@ -86,9 +88,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                   <S.HeaderProfile ref={headerProfileRef} onClick={() => setSubnavOpen((prevState) => !prevState)} />
                   {subnavOpen && (
                     <S.MyList ref={subnavRef}>
-                      <li>
-                        <Link href="#">나의 글</Link>
-                      </li>
+                      <li>{user && <Link href={'/blog/' + user}>나의 글</Link>}</li>
                       <li>
                         <Link href="/profile">마이페이지</Link>
                       </li>
