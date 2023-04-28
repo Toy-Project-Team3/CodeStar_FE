@@ -1,10 +1,10 @@
 export type User = {
   id: string;
   username: string;
-  email: string;
-  password: string;
+  userId: string;
+  profileImg?: string;
   createdAt: string;
   updatedAt: string;
-}
+};
 
-export const users: Omit<User, 'createdAt'>[] = []
+export const users: Omit<User, 'createdAt'>[] = [];
