@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as S from '@/styles/modal';
 import { instance } from '../../utils/axiosInstance';
 import { SubmitHandler, useForm } from 'react-hook-form';
 

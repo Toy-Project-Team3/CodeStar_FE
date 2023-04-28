@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from '@/styles/styled';
 import Logo from '@/asset/img/Logo';
 import Link from 'next/link';

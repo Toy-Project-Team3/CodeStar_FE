@@ -1,6 +1,6 @@
 import React from 'react';
 import { instance } from '@/utils/axiosInstance';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { setCookie } from '@/utils/cookies';
 import { useRecoilState } from 'recoil';
 import userState from '@/utils/atom';

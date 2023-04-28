@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { instance } from '@/utils/axiosInstance';
 import { AxiosError } from 'axios';
@@ -8,7 +8,7 @@ import * as B from '@/styles/buttonStyled';
 import dynamic from 'next/dynamic';
 import { useMutation, useQueryClient } from 'react-query';
 import { createPost } from '@/utils/requests';
-import { QueryClient } from 'react-query';
+
 const Editor = dynamic(() => import('@/components/TuiEditor/Editor'), { ssr: false });
 const WriteModal = dynamic(() => import('@/components/Write/WriteModal'), { ssr: false });
 
