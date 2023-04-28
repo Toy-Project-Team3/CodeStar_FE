@@ -16,18 +16,18 @@ const variants = {
   }),
 };
 
-function CreditScore({ width = 20, height = 20 }: CreditScoreProp) {
+function CreditScore({ width = 20, height = 20, score = 50 }: CreditScoreProp) {
   return (
     <S.ProfileCreditScore width={width} height={height} score={100}>
       <motion.div
-        custom={50}
+        custom={score ? 100 - score : 100}
         variants={variants}
         initial="waterInitial"
         animate="waterAnimate"
         className="wave"
       ></motion.div>
       <div className="score">
-        <span>50</span>
+        <span>{score}</span>
       </div>
     </S.ProfileCreditScore>
   );

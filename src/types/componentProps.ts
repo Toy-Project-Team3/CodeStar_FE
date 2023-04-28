@@ -13,4 +13,5 @@ export interface ProfileLayoutProp {
 export interface CreditScoreProp {
   width?: number;
   height?: number;
+  score?: number;
 }

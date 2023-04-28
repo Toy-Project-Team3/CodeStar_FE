@@ -7,6 +7,8 @@ import { BaseLayoutProp } from '@/types/componentProps';
 import IconSearch from '@/asset/img/IconSearch';
 import { getCookie, removeCookie } from '@/utils/cookies';
 import { instance } from '@/utils/axiosInstance';
+import { useRecoilState } from 'recoil';
+import userState from '@/utils/atom';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [token, setToken] = useState<boolean>(false);
@@ -14,7 +16,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [subnavOpen, setSubnavOpen] = useState<boolean>(false);
   const subnavRef = useRef<HTMLUListElement>(null);
   const headerProfileRef = useRef(null);
-
+  const [user, setUser] = useRecoilState(userState);
   const handleOutsideClick = (event: MouseEvent) => {
     if (!subnavRef.current || !headerProfileRef.current) return;
 
@@ -25,7 +27,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
       setSubnavOpen(false);
     }
   };
-
+  console.log(user);
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
@@ -77,11 +79,9 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
                   <S.HeaderProfile ref={headerProfileRef} onClick={() => setSubnavOpen((prevState) => !prevState)} />
                   {subnavOpen && (
                     <S.MyList ref={subnavRef}>
+                      <li>{user && <Link href={'/blog/' + user}>나의 글</Link>}</li>
                       <li>
-                        <Link href="#">나의 글</Link>
-                      </li>
-                      <li>
-                        <Link href="#">마이페이지</Link>
+                        <Link href="/profile">마이페이지</Link>
                       </li>
                       <li onClick={handleLogout}>
                         <p>로그아웃</p>
