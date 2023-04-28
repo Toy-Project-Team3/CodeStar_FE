@@ -1,5 +1,6 @@
+// @no-type
 import Layout from '@/components/Layout/BaseLayout';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useRef, useState, useEffect } from 'react';
 import * as S from '@/styles/postStyled';
 import IconDislike from '@/asset/img/IconDislike';
 import Comment from '@/components/Comment';
@@ -12,9 +13,17 @@ import Link from 'next/link';
 import { GetServerSidePropsContext } from 'next';
 import { useRecoilValue } from 'recoil';
 import userState from '@/utils/atom';
+import dynamic from 'next/dynamic';
+const Viewer = dynamic(() => import('@/components/TuiEditor/Viewer'), { ssr: false });
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const query = context.query.slug;
+  // const containerRef = useRef(<div id="viewer"></div>);
+  // const Viewer = new Viewer({
+  //   el: containerRef.current,
+  //   height: '600px',
+  //   initialValue: post.content,
+  // });
   if (!query) {
     return null;
   }
@@ -23,13 +32,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 function Index({ post }: { post: PostInterface }) {
-  const [scrollYValue, setScrollYValue] = React.useState(false);
-  const [like, setLike] = React.useState(false);
-  const [disLike, setDisLike] = React.useState(false);
-  const [comment, setComment] = React.useState('');
+  const [scrollYValue, setScrollYValue] = useState(false);
+  const [like, setLike] = useState(false);
+  const [disLike, setDisLike] = useState(false);
+  const [comment, setComment] = useState('');
   const user = useRecoilValue(userState);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 290 ? setScrollYValue(true) : setScrollYValue(false);
     });
@@ -101,7 +110,9 @@ function Index({ post }: { post: PostInterface }) {
         </S.TitleContainer>
       </S.MainContainer>
       <S.ContentContainer>
-        <Test />
+        {/* <Test /> */}
+        <Viewer initialValue={post.content} />
+        {/* <div id="viewer" ref={containerRef}></div> */}
       </S.ContentContainer>
       <S.WriterContainer>
         <S.WriterWrapper>
