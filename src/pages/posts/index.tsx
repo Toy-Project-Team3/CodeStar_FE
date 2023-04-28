@@ -8,7 +8,6 @@ import * as B from '@/styles/buttonStyled';
 import dynamic from 'next/dynamic';
 import { useMutation, useQueryClient } from 'react-query';
 import { createPost } from '@/utils/requests';
-import { QueryClient } from 'react-query';
 const Editor = dynamic(() => import('@/components/TuiEditor/Editor'), { ssr: false });
 const WriteModal = dynamic(() => import('@/components/Write/WriteModal'), { ssr: false });
 
