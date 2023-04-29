@@ -12,7 +12,8 @@ export const OwnerContainer = styled.div`
     display: flex;
     align-items: center;
     div {
-      img {
+      img,
+      svg {
         display: block;
         width: 12.8rem;
         height: 12.8rem;

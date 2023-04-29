@@ -129,6 +129,9 @@ export const MainContentItem = styled(motion.div)`
       height: 100%;
     }
     .emptyThumbnail {
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
       width: 100%;
       height: 100%;
       background-color: ${(p) => p.theme.color.lightDark};
@@ -180,7 +183,8 @@ export const MainContentItem = styled(motion.div)`
       .userProfileImg {
         display: flex;
         justify-content: center;
-        img {
+        img,
+        svg {
           width: 2.4rem;
           height: 2.4rem;
           border-radius: 50%;

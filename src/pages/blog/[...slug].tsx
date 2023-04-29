@@ -6,6 +6,7 @@ import BlogPost from '@/components/blogPost';
 import { getblogPosts } from '@/utils/requests';
 import { PostInterface } from '@/types/RequestInterface';
 import { GetServerSidePropsContext } from 'next';
+import UserDummyImage from '@/asset/img/UserDummyImage';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const query = context.query.slug;
@@ -24,7 +25,7 @@ function Index({ post }: { post: PostInterface[] }) {
         <S.OwnerContainer>
           <div className="wrapper">
             <div>
-              <img src="https://picsum.photos/200/300" alt="profile" />
+              {post[0].author.profileImg ? <img src={post[0]?.author.profileImg} alt="profile" /> : <UserDummyImage />}
             </div>
             <div className="owner">
               <div className="name">{post[0].author.userName}</div>
