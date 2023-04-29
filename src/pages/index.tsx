@@ -6,6 +6,9 @@ import BaseLayout from '@/components/Layout/BaseLayout';
 import IconHeart from '@/asset/img/IconHeart';
 import { useQuery } from 'react-query';
 import { getPosts } from '@/utils/requests';
+import { getDate } from '@/utils/dateFormat';
+import Logo from '@/asset/img/Logo';
+import UserDummyImage from '@/asset/img/UserDummyImage';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
@@ -44,7 +47,9 @@ export default function Home() {
                       {item.thumbnail ? (
                         <img className="thumbnail" src={item.thumbnail} alt={item.title + 'Img'} />
                       ) : (
-                        <div className="emptyThumbnail"></div>
+                        <div className="emptyThumbnail">
+                          <Logo />
+                        </div>
                       )}
                     </div>
                   </Link>
@@ -54,7 +59,7 @@ export default function Home() {
                         <h4 className="postTitle">{item.title}</h4>
                         <p className="postContent">{item.content}</p>
                         <div className="subInfo">
-                          {item.isPrivate}
+                          {getDate(item.createdAt)}
                           <span>·</span>
                           <span>
                             {item.commentList?.length}
@@ -69,7 +74,9 @@ export default function Home() {
                           {item.author?.profileImg ? (
                             <img src={item.author?.profileImg} alt="user profile image" />
                           ) : (
-                            <div></div>
+                            <>
+                              <UserDummyImage />
+                            </>
                           )}
                         </div>
                         <div className="userName">

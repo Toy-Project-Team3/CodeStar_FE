@@ -11,9 +11,9 @@ import { CommentList, PostInterface } from '@/types/RequestInterface';
 import { getDate } from '@/utils/dateFormat';
 import Link from 'next/link';
 import { GetServerSidePropsContext } from 'next';
-import { useRecoilValue } from 'recoil';
-import userState from '@/utils/atom';
 import dynamic from 'next/dynamic';
+import { getUser } from '@/utils/cookies';
+import UserDummyImage from '@/asset/img/UserDummyImage';
 const Viewer = dynamic(() => import('@/components/TuiEditor/Viewer'), { ssr: false });
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const query = context.query.slug;
@@ -35,7 +35,7 @@ function Index({ post }: { post: PostInterface }) {
   const [like, setLike] = React.useState(false);
   const [disLike, setDisLike] = React.useState(false);
   const [comment, setComment] = React.useState('');
-  const user = useRecoilValue(userState);
+  const user = getUser();
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -116,7 +116,8 @@ function Index({ post }: { post: PostInterface }) {
       <S.WriterContainer>
         <S.WriterWrapper>
           <Link href={{ pathname: `/blog/${post.author.id}` }}>
-            <img src={post?.author.profileImg} alt="profile" />
+            {post.author.profileImg ? <img src={post?.author.profileImg} alt="profile" /> : <UserDummyImage />}
+            {/* <img src={post?.author.profileImg} alt="profile" /> */}
           </Link>
           <div className="writerInfo">
             <div className="name">

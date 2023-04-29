@@ -173,7 +173,8 @@ export const WriterWrapper = styled.div`
   align-items: center;
   position: relative;
 
-  img {
+  img,
+  svg {
     display: block;
     width: 12rem;
     height: 12rem;
