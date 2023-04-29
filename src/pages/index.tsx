@@ -6,6 +6,7 @@ import BaseLayout from '@/components/Layout/BaseLayout';
 import IconHeart from '@/asset/img/IconHeart';
 import { useQuery } from 'react-query';
 import { getPosts } from '@/utils/requests';
+import { getDate } from '@/utils/dateFormat';
 
 export default function Home() {
   const { data } = useQuery('posts', getPosts);
@@ -54,7 +55,7 @@ export default function Home() {
                         <h4 className="postTitle">{item.title}</h4>
                         <p className="postContent">{item.content}</p>
                         <div className="subInfo">
-                          {item.isPrivate}
+                          {getDate(item.createdAt)}
                           <span>·</span>
                           <span>
                             {item.commentList?.length}
