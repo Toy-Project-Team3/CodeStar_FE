@@ -136,18 +136,30 @@ export const ContentContainer = styled(TitleContainer)`
   margin-top: 5rem;
   font-size: 2rem;
   line-height: 1.5;
-  .toastui-editor-ww-code-block {
-    margin: 3rem 0;
-    pre {
-      code {
-        width: 100%;
-        margin: 2rem;
-        padding: 2rem;
-        color: #b3d4fc;
-        display: block;
-        border-radius: 1rem;
+  .toastui-editor-contents {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      color: #ececec;
+    }
+    .toastui-editor-ww-code-block {
+      margin: 3rem 0;
+      pre {
         background-color: #212121;
+        border-radius: 1rem;
+        padding: 2rem;
+        margin: 2rem;
+        code {
+          color: #b3d4fc;
+        }
       }
+    }
+    .toastui-editor-ww-code-block::after {
+      display: none;
     }
   }
 `;

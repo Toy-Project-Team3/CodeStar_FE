@@ -7,10 +7,9 @@ import { motion, Variants } from 'framer-motion';
 import CreditScore from '@/components/CreditScore';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
-import userState from '@/utils/atom';
 import { getMyInfo } from '@/utils/requests';
-import { UserInfo } from '@/types/User';
+import { User, UserInfo } from '@/types/User';
+import { getUser } from '@/utils/cookies';
 
 const variants: Variants = {
   hover: {
@@ -29,20 +28,20 @@ const variants: Variants = {
 
 function ProfileLayout({ children, hasHeader }: ProfileLayoutProp) {
   const [data, setData] = useState<UserInfo | null>(null);
-  const userId = useRecoilValue(userState);
+  const user = getUser();
   const route = useRouter();
 
-  const getUserInfo = async (userId: string) => {
-    if (userId === '') await route.push('/');
+  const getUserInfo = async (user: User) => {
+    if (!user) await route.push('/');
     else {
-      const res = await getMyInfo(userId);
+      const res = await getMyInfo(user.userId);
       console.log(res);
       setData(res);
     }
   };
 
   useEffect(() => {
-    getUserInfo(userId);
+    getUserInfo(user);
   }, []);
 
   return (

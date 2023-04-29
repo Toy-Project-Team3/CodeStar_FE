@@ -6,11 +6,9 @@ import Image from 'next/image';
 import Modal from '../Modal';
 import { BaseLayoutProp } from '@/types/componentProps';
 import IconSearch from '@/asset/img/IconSearch';
-import { getCookie, removeCookie } from '@/utils/cookies';
+import { getCookie, getUser, removeCookie } from '@/utils/cookies';
 import { imgInstance, instance } from '@/utils/axiosInstance';
 import { getMyInfo } from '@/utils/requests';
-import { useRecoilState } from 'recoil';
-import userState from '@/utils/atom';
 
 function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [token, setToken] = useState<boolean>(false);
@@ -19,8 +17,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   const [subnavOpen, setSubnavOpen] = useState<boolean>(false);
   const subnavRef = useRef<HTMLUListElement>(null);
   const headerProfileRef = useRef(null);
-  const [user, setUser] = useRecoilState(userState);
-  console.log(user);
+  const user = getUser();
   const handleOutsideClick = (event: MouseEvent) => {
     if (!subnavRef.current || !headerProfileRef.current) return;
 
@@ -31,7 +28,6 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
       setSubnavOpen(false);
     }
   };
-  console.log(user);
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
@@ -53,6 +49,7 @@ function BaseLayout({ children, hasHeader }: BaseLayoutProp) {
   }, [token]);
 
   const handleLogout = async () => {
+    console.log('logout');
     try {
       await instance.post('/auth/logout');
       setToken(false);
